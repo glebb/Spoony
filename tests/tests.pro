@@ -57,16 +57,14 @@ win32 {
 DEFINES += WIN32
 }
 
-macx{
 QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 QMAKE_LDFLAGS += -fprofile-arcs -ftest-coverage
 LIBS += -lgcov
-}
 
-RCC_DIR = "Build\RCCFiles"
-UI_DIR = "Build\UICFiles"
-MOC_DIR = "Build\MOCFiles"
-#OBJECTS_DIR = "Build\ObjFiles"
+RCC_DIR = "Build"
+UI_DIR = "Build"
+MOC_DIR = "Build"
+OBJECTS_DIR = "Build"
 
 CONFIG(debug, debug|release) {
     DESTDIR = "debug"
@@ -78,3 +76,6 @@ CONFIG(release, debug|release) {
 OTHER_FILES += \
     features/squatting.feature \
     features/squatting.rb
+
+RESOURCES += \
+    fake.qrc

@@ -44,10 +44,10 @@ OTHER_FILES += \
     ../features/gamescreen.feature \
     ../features/basic_movement.feature.incomplete
 
-RCC_DIR = "Build\RCCFiles"
-UI_DIR = "Build\UICFiles"
-MOC_DIR = "Build\MOCFiles"
-OBJECTS_DIR = "Build\ObjFiles"
+RCC_DIR = "Build"
+UI_DIR = "Build"
+MOC_DIR = "Build"
+OBJECTS_DIR = "Build"
 
 CONFIG(debug, debug|release) {
     DESTDIR = "debug"
