@@ -4,17 +4,17 @@
 #include <QtTest/QtTest>
 #include "inputintercepter.h"
 
-class TestInputIntercepter : public QObject
+class InputIntercepterSpec : public QObject
 {
     Q_OBJECT
 public:
-    TestInputIntercepter();
+    InputIntercepterSpec();
 
 private Q_SLOTS:
     void init();
     void cleanup();
-    void testInputIntercepterCatchesMouseEvents();
-    void testInputIntercepterDoesntCatchKeyboardEvents();
+    void shouldCatchMouseEvents();
+    void shouldNotCatchKeyboardEvents();
 
 private:
     InputIntercepter *i;

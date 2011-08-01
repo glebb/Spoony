@@ -1,4 +1,4 @@
-#include "tst_testgame.h"
+#include "testgame.h"
 
 #include "game.h"
 #include "fakelevel.h"
@@ -8,11 +8,11 @@
 
 #include <QtTest/QtTest>
 
-TestGame::TestGame()
+GameSpec::GameSpec()
 {
 }
 
-void TestGame::init()
+void GameSpec::init()
 {
     m = new SnoopyMessaging;
     timer = new QTimer;
@@ -21,42 +21,42 @@ void TestGame::init()
 
 }
 
-void TestGame::cleanup()
+void GameSpec::cleanup()
 {
     delete m;
     delete timer;
     delete game;
 }
 
-void TestGame::testRoundIsOneOnStartGame()
+void GameSpec::shouldBeRoundOneOnStart()
 {
     game->setCurrentLevel(level);
     game->start(3);
     QCOMPARE(game->getRound(), 1);
 }
 
-void TestGame::testCurrentLevelIsOneOnStart()
+void GameSpec::shouldStartOnLevelOne()
 {
     game->setCurrentLevel(level);
     game->start(3);
     QCOMPARE(1, game->getCurrentLevelNr());
 }
 
-void TestGame::testLivesIsReducedOnDeath()
+void GameSpec::shouldReduceLivesOnDeath()
 {
     game->start(3);
     game->onDie();
     QCOMPARE(2, game->getLives());
 }
 
-void TestGame::testLevelChangesOnLevelChange()
+void GameSpec::shouldChangeCurrentLevel()
 {
     game->setCurrentLevel(level);
     game->nextLevel();
     QVERIFY(level != game->getCurrentLevel());
 }
 
-void TestGame::testRestartRestartsFromLevelOne()
+void GameSpec::shouldStartOnLevelOneOnRestart()
 {
     game->setCurrentLevel(level);
     game->start(3);
@@ -67,7 +67,7 @@ void TestGame::testRestartRestartsFromLevelOne()
     QCOMPARE(LIVES, game->getLives());
 }
 
-void TestGame::testResetLevelCreatesLevelAgain()
+void GameSpec::shouldCreateLevelAgainOnReset()
 {
     game->resetLevel();
     QVERIFY(level != game->getCurrentLevel());

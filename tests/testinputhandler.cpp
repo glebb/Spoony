@@ -1,4 +1,4 @@
-#include "tst_testinputhandler.h"
+#include "testinputhandler.h"
 
 #include "inputhandler.h"
 #include "snoopysprite.h"
@@ -8,11 +8,11 @@
 
 #include <QtTest/QtTest>
 
-TestInputHandler::TestInputHandler()
+InputHandlerSpec::InputHandlerSpec()
 {
 }
 
-void TestInputHandler::init()
+void InputHandlerSpec::init()
 {
     i = new InputHandler;
     m = new SnoopyMessaging;
@@ -20,7 +20,7 @@ void TestInputHandler::init()
 
 }
 
-void TestInputHandler::cleanup()
+void InputHandlerSpec::cleanup()
 {
     delete snoopy;
     delete m;
@@ -28,7 +28,7 @@ void TestInputHandler::cleanup()
 
 }
 
-void TestInputHandler::testLeftArrowDownMovesSnoopyLeft()
+void InputHandlerSpec::shouldMovePlayerLeft()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777234, 0, 0);
     i->keyDown(snoopy, event);
@@ -38,7 +38,7 @@ void TestInputHandler::testLeftArrowDownMovesSnoopyLeft()
     delete event;
 }
 
-void TestInputHandler::testRightArrowDownMovesSnoopyRight()
+void InputHandlerSpec::shouldMovePlayerRight()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777236, 0, 0);
     i->keyDown(snoopy, event);
@@ -49,13 +49,13 @@ void TestInputHandler::testRightArrowDownMovesSnoopyRight()
 
 }
 
-void TestInputHandler::testNoMovementWithoutInput()
+void InputHandlerSpec::shouldNotMovePlayerWithoutInput()
 {
     QVERIFY(!snoopy->move.moving);
     QVERIFY(!snoopy->move.jumping);
 }
 
-void TestInputHandler::testUpArrowMakesSnoopyJump()
+void InputHandlerSpec::shouldMakePlayerJump()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777235, 0, 0);
     i->keyDown(snoopy, event);
@@ -63,7 +63,7 @@ void TestInputHandler::testUpArrowMakesSnoopyJump()
     delete event;
 }
 
-void TestInputHandler::testKeyReleaseStopsMoving()
+void InputHandlerSpec::shouldStopMovementOnKeyRelease()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777236, 0, 0);
     i->keyDown(snoopy, event);
@@ -75,7 +75,7 @@ void TestInputHandler::testKeyReleaseStopsMoving()
     delete event;
 }
 
-void TestInputHandler::testShouldBePossibleJumpAndMoveAtSameTime()
+void InputHandlerSpec::shouldBePossibleJumpAndMoveAtSameTime()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777234, 0, 0);
     i->keyDown(snoopy, event);

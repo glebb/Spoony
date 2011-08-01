@@ -1,4 +1,4 @@
-#include "tst_testmovehandler.h"
+#include "testmovehandler.h"
 
 #include "snoopysprite.h"
 #include "movehandler.h"
@@ -12,11 +12,11 @@
 #include <QRectF>
 
 
-TestMoveHandler::TestMoveHandler()
+MoveHandlerSpec::MoveHandlerSpec()
 {
 }
 
-void TestMoveHandler::init()
+void MoveHandlerSpec::init()
 {
     m = new SnoopyMessaging;
     snoopy = new SnoopySprite(m, new FakeSoundHandler);
@@ -24,7 +24,7 @@ void TestMoveHandler::init()
     move->setSnoopy(snoopy);
 }
 
-void TestMoveHandler::cleanup()
+void MoveHandlerSpec::cleanup()
 {
     delete m;
     delete move;
@@ -32,7 +32,7 @@ void TestMoveHandler::cleanup()
 
 }
 
-void TestMoveHandler::testEmitDieWhenDying()
+void MoveHandlerSpec::shouldEmitDie()
 {
     QSignalSpy stateSpy(move, SIGNAL(die()));
     QVERIFY(stateSpy.isValid());
@@ -44,7 +44,7 @@ void TestMoveHandler::testEmitDieWhenDying()
     QCOMPARE(stateSpy.count(), 1);
 }
 
-void TestMoveHandler::testEmitJumpWhenJumping()
+void MoveHandlerSpec::shouldEmitJump()
 {
     QSignalSpy stateSpy(move, SIGNAL(jump()));
     QVERIFY(stateSpy.isValid());
@@ -56,7 +56,7 @@ void TestMoveHandler::testEmitJumpWhenJumping()
     QCOMPARE(stateSpy.count(), 1);
 }
 
-void TestMoveHandler::testEmitCollideWhenColliding()
+void MoveHandlerSpec::shouldEmitCollide()
 {
     QGraphicsScene *scene = new QGraphicsScene(0,0, 1000, 1000);
     scene->addItem(snoopy);
@@ -77,7 +77,7 @@ void TestMoveHandler::testEmitCollideWhenColliding()
 }
 
 
-void TestMoveHandler::testMovingLeftMovesSnoopyLeft()
+void MoveHandlerSpec::shouldMovePlayerLeft()
 {
     move->moving = true;
     int originalLocation = snoopy->x();
@@ -88,7 +88,7 @@ void TestMoveHandler::testMovingLeftMovesSnoopyLeft()
     QVERIFY(originalLocation > snoopy->x());
 }
 
-void TestMoveHandler::testMovingRightMovesSnoopyRight()
+void MoveHandlerSpec::shouldMovePlayerRight()
 {
     move->moving = true;
     move->goingLeft = false;
@@ -99,7 +99,7 @@ void TestMoveHandler::testMovingRightMovesSnoopyRight()
     QVERIFY(originalLocation < snoopy->x());
 }
 
-void TestMoveHandler::testJumpingMakesSnoopyJump()
+void MoveHandlerSpec::shouldMakePlayerJump()
 {
     move->jumping = true;
     int originalLocation = snoopy->y();
@@ -107,7 +107,7 @@ void TestMoveHandler::testJumpingMakesSnoopyJump()
     QVERIFY(originalLocation > snoopy->y());
 }
 
-void TestMoveHandler::testSnoopyShouldFallOnDie()
+void MoveHandlerSpec::shouldMakePlayerDieOnFall()
 {
     int originalLocation = snoopy->y();
     move->death();
@@ -115,7 +115,7 @@ void TestMoveHandler::testSnoopyShouldFallOnDie()
 
 }
 
-void TestMoveHandler::testEmitFinishedDyingWhenFinishedDying()
+void MoveHandlerSpec::shouldEmitFinishedDying()
 {
     QSignalSpy stateSpy(move, SIGNAL(finishedDying()));
     QVERIFY(stateSpy.isValid());
@@ -131,7 +131,7 @@ void TestMoveHandler::testEmitFinishedDyingWhenFinishedDying()
 
 }
 
-void TestMoveHandler::testChangeDirectionChangesDirection()
+void MoveHandlerSpec::shouldChangePlayerDirection()
 {
     move->goingRight = true;
     move->changeDir(snoopy);

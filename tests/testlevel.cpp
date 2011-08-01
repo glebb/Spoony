@@ -1,4 +1,4 @@
-#include "tst_testlevel.h"
+#include "testlevel.h"
 
 #include "level1.h"
 #include <QGraphicsObject>
@@ -8,11 +8,11 @@
 #include "fakegraphics.h"
 #include "globals.h"
 
-TestLevel::TestLevel()
+LevelSpec::LevelSpec()
 {
 }
 
-void TestLevel::init()
+void LevelSpec::init()
 {
     scene = new QGraphicsScene(0,0, 1000, 1000);
     m = new SnoopyMessaging();
@@ -23,7 +23,7 @@ void TestLevel::init()
 }
 
 
-void TestLevel::cleanup()
+void LevelSpec::cleanup()
 {
     delete scene;
     delete m;
@@ -31,7 +31,7 @@ void TestLevel::cleanup()
     delete l;
 }
 
-void TestLevel::testCollidingWithKillerKillsSnoopy()
+void LevelSpec::shouldKillPlayerWhenCollidingWithKiller()
 {
     QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Snoopy
     gfx2->setBounds(r);
@@ -46,7 +46,7 @@ void TestLevel::testCollidingWithKillerKillsSnoopy()
     QCOMPARE(stateSpy.count(), 1);
 }
 
-void TestLevel::testCollidingWithNormalDoesntKill()
+void LevelSpec::shouldNotKillPlayerWhenCollidingNormalObject()
 {
 
     QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Snoopy
@@ -58,7 +58,7 @@ void TestLevel::testCollidingWithNormalDoesntKill()
     l->onCollide();
     QCOMPARE(stateSpy.count(), 0);}
 
-void TestLevel::testNotCollidingWithKillerDoesntKill()
+void LevelSpec::shouldNotKillPlayerWhenNotCollidingWithKiller()
 {
     QRectF r(0, 0, 10, 10);
     gfx2->setBounds(r);
@@ -73,7 +73,7 @@ void TestLevel::testNotCollidingWithKillerDoesntKill()
     QCOMPARE(stateSpy.count(), 0);
 }
 
-void TestLevel::testNotCollidingWithNormalDoesntKill()
+void LevelSpec::shouldNotKillPlayerWhenNotCollidingWithNormalObject()
 {
     QRectF r(0, 0, 10, 10);
     gfx2->setBounds(r);

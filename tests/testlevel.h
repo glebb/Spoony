@@ -8,20 +8,20 @@ class SnoopyMessaging;
 class Level1;
 class FakeGraphics;
 
-class TestLevel : public QObject
+class LevelSpec : public QObject
 {
     Q_OBJECT
 
 public:
-    TestLevel();
+    LevelSpec();
 
 private Q_SLOTS:
     void init();
     void cleanup();
-    void testCollidingWithKillerKillsSnoopy();
-    void testCollidingWithNormalDoesntKill();
-    void testNotCollidingWithKillerDoesntKill();
-    void testNotCollidingWithNormalDoesntKill();
+    void shouldKillPlayerWhenCollidingWithKiller();
+    void shouldNotKillPlayerWhenCollidingNormalObject();
+    void shouldNotKillPlayerWhenNotCollidingWithKiller();
+    void shouldNotKillPlayerWhenNotCollidingWithNormalObject();
 
 private:
     QGraphicsScene *scene;

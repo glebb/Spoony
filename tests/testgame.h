@@ -8,22 +8,22 @@ class FakeLevel;
 class SnoopyMessaging;
 class QTimer;
 
-class TestGame : public QObject
+class GameSpec : public QObject
 {
     Q_OBJECT
 
 public:
-    TestGame();
+    GameSpec();
 
 private Q_SLOTS:
     void init();
     void cleanup();
-    void testRoundIsOneOnStartGame();
-    void testCurrentLevelIsOneOnStart();
-    void testLivesIsReducedOnDeath();
-    void testLevelChangesOnLevelChange();
-    void testRestartRestartsFromLevelOne();
-    void testResetLevelCreatesLevelAgain();
+    void shouldStartOnLevelOne();
+    void shouldBeRoundOneOnStart();
+    void shouldReduceLivesOnDeath();
+    void shouldChangeCurrentLevel();
+    void shouldStartOnLevelOneOnRestart();
+    void shouldCreateLevelAgainOnReset();
 
 private:
     Game *game;

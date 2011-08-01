@@ -8,11 +8,11 @@
 #include <QWidget>
 
 
-TestInputIntercepter::TestInputIntercepter()
+InputIntercepterSpec::InputIntercepterSpec()
 {
 }
 
-void TestInputIntercepter::init()
+void InputIntercepterSpec::init()
 
 {
     i = new InputIntercepter;
@@ -20,13 +20,13 @@ void TestInputIntercepter::init()
 
 }
 
-void TestInputIntercepter::cleanup()
+void InputIntercepterSpec::cleanup()
 {
     delete i;
     delete o;
 }
 
-void TestInputIntercepter::testInputIntercepterCatchesMouseEvents()
+void InputIntercepterSpec::shouldCatchMouseEvents()
 {
     QMouseEvent *e = new QMouseEvent(QEvent::MouseButtonPress, QPoint(0,0), Qt::LeftButton, Qt::NoButton, Qt::NoModifier);
     o->installEventFilter(i);
@@ -34,7 +34,7 @@ void TestInputIntercepter::testInputIntercepterCatchesMouseEvents()
     delete e;
 }
 
-void TestInputIntercepter::testInputIntercepterDoesntCatchKeyboardEvents()
+void InputIntercepterSpec::shouldNotCatchKeyboardEvents()
 {
     QEvent *e = new QKeyEvent(QEvent::KeyPress, 0, 0, "");
     o->installEventFilter(i);

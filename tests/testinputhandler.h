@@ -7,22 +7,22 @@ class InputHandler;
 class SnoopyMessaging;
 class SnoopySprite;
 
-class TestInputHandler : public QObject
+class InputHandlerSpec : public QObject
 {
     Q_OBJECT
 
 public:
-    TestInputHandler();
+    InputHandlerSpec();
 
 private Q_SLOTS:
     void init();
     void cleanup();
-    void testLeftArrowDownMovesSnoopyLeft();
-    void testRightArrowDownMovesSnoopyRight();
-    void testNoMovementWithoutInput();
-    void testUpArrowMakesSnoopyJump();
-    void testKeyReleaseStopsMoving();
-    void testShouldBePossibleJumpAndMoveAtSameTime();
+    void shouldMovePlayerLeft();
+    void shouldMovePlayerRight();
+    void shouldNotMovePlayerWithoutInput();
+    void shouldMakePlayerJump();
+    void shouldStopMovementOnKeyRelease();
+    void shouldBePossibleJumpAndMoveAtSameTime();
 
 
 private:

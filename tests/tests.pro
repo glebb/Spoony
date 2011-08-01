@@ -17,7 +17,7 @@ INCLUDEPATH += ../ \
         ../sprites/ \
         ../levels/
 
-SOURCES += tst_testgame.cpp \
+SOURCES += testgame.cpp \
         ../game.cpp \
         ../levels/*.cpp \
         ../sprites/*.cpp \
@@ -33,22 +33,22 @@ SOURCES += tst_testgame.cpp \
         ../snoopyapp.cpp \
         main.cpp \
         fakelevel.cpp \
-        tst_testlevel.cpp \
-    fakegraphics.cpp \
-    tst_testinputhandler.cpp \
-    tst_testmovehandler.cpp \
-    testinputintercepter.cpp
+        testlevel.cpp \
+        fakegraphics.cpp \
+        testinputhandler.cpp \
+        testmovehandler.cpp \
+        testinputintercepter.cpp
 
 
 HEADERS += ../*.h \
     ../levels/*.h \
     ../sprites/*.h \
-    tst_testgame.h \
+    testgame.h \
     fakelevel.h \
-    tst_testlevel.h \
+    testlevel.h \
     fakegraphics.h \
-    tst_testinputhandler.h \
-    tst_testmovehandler.h \
+    testinputhandler.h \
+    testmovehandler.h \
     testinputintercepter.h
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
