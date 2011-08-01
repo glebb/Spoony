@@ -65,7 +65,7 @@ OTHER_FILES += \
 RCC_DIR = "Build\RCCFiles"
 UI_DIR = "Build\UICFiles"
 MOC_DIR = "Build\MOCFiles"
-#OBJECTS_DIR = "Build\ObjFiles"
+OBJECTS_DIR = "Build\ObjFiles"
 
 CONFIG(debug, debug|release) {
     DESTDIR = "debug"
@@ -74,11 +74,14 @@ CONFIG(release, debug|release) {
     DESTDIR = "release"
 }
 
-macx{
+
 QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 QMAKE_LDFLAGS += -fprofile-arcs -ftest-coverage
-QMAKE_POST_LINK += mkdir -p $$DESTDIR/Snoopy.app/Contents/MacOS/sounds && cp sounds/* $$DESTDIR/Snoopy.app/Contents/MacOS/sounds/
 LIBS += -lgcov
+
+macx{
+QMAKE_POST_LINK += mkdir -p $$DESTDIR/Snoopy.app/Contents/MacOS/sounds && cp sounds/* $$DESTDIR/Snoopy.app/Contents/MacOS/sounds/
+
 }
 
 win32{
