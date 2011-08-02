@@ -56,6 +56,11 @@ CONFIG(release, debug|release) {
     DESTDIR = "release"
 }
 
+unix {
+LIBS += /usr/lib/libqttestability.so
+INCLUDEPATH += /usr/include/tdriver/
+}
+
 macx {
 LIBS += /Users/antti/tinkerin/tdriver/agent_qt/tascore/lib/libqttestability.dylib
 INCLUDEPATH += /usr/include/tdriver/
@@ -65,6 +70,7 @@ win32 {
 LIBS += c:/qttas/lib/qttestability.dll
 INCLUDEPATH += c:/qttas/inc
 }
+
 
 win32{
 QMAKE_POST_LINK += "xcopy /Y /i /e /c $$DESTDIR\\tas_noopsy.dll C:\\QtSDK\\Desktop\\Qt\\4.7.3\\mingw\plugins\\tasfixtures\\"

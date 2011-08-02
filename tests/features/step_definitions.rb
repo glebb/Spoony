@@ -8,7 +8,8 @@ require 'rspec'
 
 $sut = TDriver.connect_sut( :Id => 'sut_qt')
 #$app = $sut.run( :name => "/Users/antti/tinkerin/snoopy/debug/Snoopy.app/Contents/MacOS/Snoopy", :arguments => "-testability")
-$app = $sut.run( :name => "c:/work/snoopy/debug/Snoopy", :arguments => "-testability")
+#$app = $sut.run( :name => "c:/work/snoopy/debug/Snoopy", :arguments => "-testability")
+$app = $sut.run( :name => "/home/ubuntu/projects/snoopy/debug/Snoopy", :arguments => "-testability")
 
 at_exit do
   $sut.application.close

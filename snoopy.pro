@@ -79,6 +79,10 @@ QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 QMAKE_LDFLAGS += -fprofile-arcs -ftest-coverage
 LIBS += -lgcov
 
+unix{
+QMAKE_POST_LINK += mkdir -p $$DESTDIR/sounds && cp sounds/* $$DESTDIR/sounds/
+}
+
 macx{
 QMAKE_POST_LINK += mkdir -p $$DESTDIR/Snoopy.app/Contents/MacOS/sounds && cp sounds/* $$DESTDIR/Snoopy.app/Contents/MacOS/sounds/
 
