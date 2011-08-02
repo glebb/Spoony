@@ -39,6 +39,8 @@ int main(int argc, char *argv[])
     qDebug() << "number of failed cases: " << res;
     qDebug() << "examples executed: "  << methods.size();
 
+    fflush(stdout);
+
     #ifdef WIN32
     if (argc > 0)
         std::cin.get();

@@ -1,6 +1,5 @@
 QT += declarative \
     phonon
-
 TEMPLATE = app
 TARGET = Snoopy
 DEPENDPATH += .Snoopy
@@ -63,10 +62,10 @@ HEADERS += \
 OTHER_FILES += \
     startscreen.qml
 
-RCC_DIR = "Build"
-UI_DIR = "Build"
-MOC_DIR = "Build"
-OBJECTS_DIR = "Build"
+RCC_DIR = "Build/RCCFiles"
+UI_DIR = "Build/UICFiles"
+MOC_DIR = "Build/MOCFiles"
+OBJECTS_DIR = "Build\ObjFiles"
 
 CONFIG(debug, debug|release) {
     DESTDIR = "debug"
@@ -74,6 +73,7 @@ CONFIG(debug, debug|release) {
 CONFIG(release, debug|release) {
     DESTDIR = "release"
 }
+
 
 QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 QMAKE_LDFLAGS += -fprofile-arcs -ftest-coverage
