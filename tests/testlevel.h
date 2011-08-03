@@ -1,5 +1,5 @@
-#ifndef TST_TESTLEVEL_H
-#define TST_TESTLEVEL_H
+#ifndef TESTLEVEL_H
+#define TESTLEVEL_H
 
 #include <QtTest/QtTest>
 
@@ -18,18 +18,18 @@ public:
 private Q_SLOTS:
     void init();
     void cleanup();
-    void shouldKillPlayerWhenCollidingWithKiller();
-    void shouldNotKillPlayerWhenCollidingNormalObject();
-    void shouldNotKillPlayerWhenNotCollidingWithKiller();
-    void shouldNotKillPlayerWhenNotCollidingWithNormalObject();
+    void onCollideShouldKillPlayerWhenCollidingWithKiller();
+    void onCollideShouldNotKillPlayerWhenCollidingNormalObject();
+    void onCollideShouldNotKillPlayerWhenNotCollidingWithKiller();
+    void onCollideShouldNotKillPlayerWhenNotCollidingWithNormalObject();
 
 private:
     QGraphicsScene *scene;
-    SnoopyMessaging *m;
-    QTimer *t;
-    Level1 *l;
-    FakeGraphics *gfx2;
+    SnoopyMessaging *messaging;
+    QTimer *timer;
+    Level1 *level;
+    FakeGraphics *fakeGraphics;
 
 };
 
-#endif // TST_TESTLEVEL_H
+#endif // TESTLEVEL_H

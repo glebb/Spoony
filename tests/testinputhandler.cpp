@@ -28,34 +28,48 @@ void InputHandlerSpec::cleanup()
 
 }
 
-void InputHandlerSpec::shouldMovePlayerLeft()
+void InputHandlerSpec::keyDownShouldMovePlayerLeftWithLeft()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777234, 0, 0);
+    i->keyDown(snoopy, event);
+    QVERIFY(snoopy->move.goingLeft);
+    delete event;
+}
+
+void InputHandlerSpec::keyDownShouldMovePlayer()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777234, 0, 0);
     i->keyDown(snoopy, event);
     QVERIFY(snoopy->move.moving);
-    QVERIFY(snoopy->move.goingLeft);
+    delete event;
+}
+
+void InputHandlerSpec::keyDownShouldNotMovePlayerRightWithLeftKey()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777234, 0, 0);
+    i->keyDown(snoopy, event);
     QVERIFY(!snoopy->move.goingRight);
     delete event;
 }
 
-void InputHandlerSpec::shouldMovePlayerRight()
+void InputHandlerSpec::keyDownShouldMovePlayerRightWithRightKey()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777236, 0, 0);
     i->keyDown(snoopy, event);
-    QVERIFY(snoopy->move.moving);
     QVERIFY(snoopy->move.goingRight);
+    delete event;
+}
+
+void InputHandlerSpec::keyDownShouldNorMovePlayerLeftWithRightKey()
+{
+    QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777236, 0, 0);
+    i->keyDown(snoopy, event);
     QVERIFY(!snoopy->move.goingLeft);
     delete event;
-
 }
 
-void InputHandlerSpec::shouldNotMovePlayerWithoutInput()
-{
-    QVERIFY(!snoopy->move.moving);
-    QVERIFY(!snoopy->move.jumping);
-}
 
-void InputHandlerSpec::shouldMakePlayerJump()
+void InputHandlerSpec::keyDownShouldMakePlayerJumpWithUpKey()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777235, 0, 0);
     i->keyDown(snoopy, event);
@@ -63,29 +77,27 @@ void InputHandlerSpec::shouldMakePlayerJump()
     delete event;
 }
 
-void InputHandlerSpec::shouldStopMovementOnKeyRelease()
+void InputHandlerSpec::keyUpShouldStopMovement()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777236, 0, 0);
     i->keyDown(snoopy, event);
     delete event;
-    QVERIFY(snoopy->move.moving);
     event = new QKeyEvent(QEvent::KeyRelease, 16777236, 0, 0);
     i->keyUp(snoopy, event);
     QVERIFY(!snoopy->move.moving);
     delete event;
 }
 
-void InputHandlerSpec::shouldBePossibleJumpAndMoveAtSameTime()
+void InputHandlerSpec::keyDownShouldHandleJumpAndMoveAtSameTime()
 {
     QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, 16777234, 0, 0);
     i->keyDown(snoopy, event);
     delete event;
-    QVERIFY(snoopy->move.moving);
     QVERIFY(!snoopy->move.jumping);
+
     event = new QKeyEvent(QEvent::KeyPress, 16777235, 0, 0);
     i->keyDown(snoopy, event);
     QVERIFY(snoopy->move.moving);
     QVERIFY(snoopy->move.jumping);
     delete event;
-
 }

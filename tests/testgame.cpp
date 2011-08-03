@@ -28,48 +28,74 @@ void GameSpec::cleanup()
     delete game;
 }
 
-void GameSpec::shouldBeRoundOneOnStart()
+void GameSpec::getRoundShouldBeOneOnStart()
 {
     game->setCurrentLevel(level);
     game->start(3);
-    QCOMPARE(game->getRound(), 1);
+    int round = game->getRound();
+    QCOMPARE(round, 1);
 }
 
-void GameSpec::shouldStartOnLevelOne()
+void GameSpec::getCurrentLevelShouldBeOneOnStart()
 {
     game->setCurrentLevel(level);
     game->start(3);
-    QCOMPARE(1, game->getCurrentLevelNr());
+    int level = game->getCurrentLevelNr();
+    QCOMPARE(1, level);
 }
 
-void GameSpec::shouldReduceLivesOnDeath()
+void GameSpec::onDieShouldReduceLivesByOne()
 {
     game->start(3);
+    int original_lives = game->getLives();
     game->onDie();
-    QCOMPARE(2, game->getLives());
+    int lives = game->getLives();
+    QCOMPARE(original_lives - 1, lives);
 }
 
-void GameSpec::shouldChangeCurrentLevel()
+void GameSpec::nextLevelshouldChangeCurrentLevel()
 {
     game->setCurrentLevel(level);
     game->nextLevel();
-    QVERIFY(level != game->getCurrentLevel());
+    Level *current_level = game->getCurrentLevel();
+    QVERIFY(level != current_level);
 }
 
-void GameSpec::shouldStartOnLevelOneOnRestart()
+void GameSpec::restartGameShouldSetLevelToOne()
 {
     game->setCurrentLevel(level);
     game->start(3);
     game->onDie();
     game->restartGame();
-    QCOMPARE(1, game->getRound());
-    QCOMPARE(1, game->getCurrentLevelNr());
-    QCOMPARE(LIVES, game->getLives());
+    int level = game->getCurrentLevelNr();
+    QCOMPARE(1, level);
 }
 
-void GameSpec::shouldCreateLevelAgainOnReset()
+void GameSpec::restartGameShouldSetRoundToOne()
+{
+    game->setCurrentLevel(level);
+    game->start(3);
+    game->onDie();
+    game->restartGame();
+    int round = game->getRound();
+    QCOMPARE(1, round);
+}
+
+void GameSpec::restartGameShouldSetLivesToDefault()
+{
+    game->setCurrentLevel(level);
+    game->start(3);
+    game->onDie();
+    game->restartGame();
+    int current_lives = game->getLives();
+    QCOMPARE(LIVES, current_lives);
+}
+
+
+void GameSpec::resetLeveShouldCreateLevelAgainOnReset()
 {
     game->resetLevel();
-    QVERIFY(level != game->getCurrentLevel());
+    Level *current_level = game->getCurrentLevel();
+    QVERIFY(level != current_level);
 
 }

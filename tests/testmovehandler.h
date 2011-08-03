@@ -1,5 +1,5 @@
-#ifndef TST_TESTMOVEHANDLER_H
-#define TST_TESTMOVEHANDLER_H
+#ifndef TESTMOVEHANDLER_H
+#define TESTMOVEHANDLER_H
 
 #include <QtTest/QtTest>
 
@@ -19,23 +19,23 @@ private Q_SLOTS:
     void init();
     void cleanup();
 
-    void shouldEmitDie();
-    void shouldEmitJump();
-    void shouldEmitCollide();
-    void shouldMovePlayerLeft();
-    void shouldMovePlayerRight();
-    void shouldMakePlayerJump();
-    void shouldMakePlayerDieOnFall();
-    void shouldEmitFinishedDying();
-    void shouldChangePlayerDirection();
+    void moveSnoopyShouldEmitDieWhenDying();
+    void moveSnoopyShouldEmitJumpWhenJumping();
+    void moveSnoopyShouldEmitCollideWhenColliding();
+    void moveSnoopyShouldMovePlayerLeftInXCoordinate();
+    void moveSnoopyShouldMovePlayerRightInXCoordinate();
+    void moveSnoopyShouldMovePlayerUpInYCoordinate();
+    void deathShouldMakePlayerFallInYCoordinates();
+    void deathShouldEmitFinishedDying();
+    void changeDirShouldChangePlayerDirection();
 
 private:
-    SnoopyMessaging *m;
+    SnoopyMessaging *messaging;
     SnoopySprite *snoopy;
-    MoveHandler *move;
+    MoveHandler *move_handler;
 
 };
 
 
 
-#endif // TST_TESTMOVEHANDLER_H
+#endif // TESTMOVEHANDLER_H

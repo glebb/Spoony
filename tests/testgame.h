@@ -1,5 +1,5 @@
-#ifndef TST_TESTGAME_H
-#define TST_TESTGAME_H
+#ifndef TESTGAME_H
+#define TESTGAME_H
 
 #include <QtTest/QtTest>
 
@@ -18,12 +18,15 @@ public:
 private Q_SLOTS:
     void init();
     void cleanup();
-    void shouldStartOnLevelOne();
-    void shouldBeRoundOneOnStart();
-    void shouldReduceLivesOnDeath();
-    void shouldChangeCurrentLevel();
-    void shouldStartOnLevelOneOnRestart();
-    void shouldCreateLevelAgainOnReset();
+
+    void resetLeveShouldCreateLevelAgainOnReset();
+    void restartGameShouldSetLivesToDefault();
+    void restartGameShouldSetRoundToOne();
+    void restartGameShouldSetLevelToOne();
+    void nextLevelshouldChangeCurrentLevel();
+    void onDieShouldReduceLivesByOne();
+    void getCurrentLevelShouldBeOneOnStart();
+    void getRoundShouldBeOneOnStart();
 
 private:
     Game *game;
@@ -32,4 +35,4 @@ private:
     QTimer *timer;
 
 };
-#endif // TST_TESTGAME_H
+#endif // TESTGAME_H

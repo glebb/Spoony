@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     res |= QTest::qExec(&testInputIntercepter, argc, argv);
     countMethods(&methods, &testInputIntercepter);
 
-    qDebug() << "number of failed cases: " << res;
+    qDebug() << "number of failed examples: " << res;
     qDebug() << "examples executed: "  << methods.size();
 
     fflush(stdout);
@@ -54,7 +54,7 @@ void countMethods(QStringList *methods, QObject *tc)
     const QMetaObject* metaObject = tc->metaObject();
     for(int i = metaObject->methodOffset(); i < metaObject->methodCount(); ++i)
     {
-        if (QString(metaObject->method(i).signature()).startsWith("should"))
+        if (QString(metaObject->method(i).signature()).toLower().contains("should"))
             methods->append(QString::fromLatin1(metaObject->method(i).signature()));
     }
 }

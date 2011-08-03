@@ -1,5 +1,5 @@
-#ifndef TST_TESTINPUTHANDLER_H
-#define TST_TESTINPUTHANDLER_H
+#ifndef TESTINPUTHANDLER_H
+#define TESTINPUTHANDLER_H
 
 #include <QtTest/QtTest>
 
@@ -17,13 +17,14 @@ public:
 private Q_SLOTS:
     void init();
     void cleanup();
-    void shouldMovePlayerLeft();
-    void shouldMovePlayerRight();
-    void shouldNotMovePlayerWithoutInput();
-    void shouldMakePlayerJump();
-    void shouldStopMovementOnKeyRelease();
-    void shouldBePossibleJumpAndMoveAtSameTime();
-
+    void keyDownShouldMovePlayer();
+    void keyDownShouldMovePlayerLeftWithLeft();
+    void keyDownShouldNotMovePlayerRightWithLeftKey();
+    void keyDownShouldMovePlayerRightWithRightKey();
+    void keyDownShouldNorMovePlayerLeftWithRightKey();
+    void keyDownShouldMakePlayerJumpWithUpKey();
+    void keyDownShouldHandleJumpAndMoveAtSameTime();
+    void keyUpShouldStopMovement();
 
 private:
     InputHandler *i;
@@ -33,4 +34,4 @@ private:
 };
 
 
-#endif // TST_TESTINPUTHANDLER_H
+#endif // TESTINPUTHANDLER_H

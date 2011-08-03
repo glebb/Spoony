@@ -15,73 +15,73 @@ LevelSpec::LevelSpec()
 void LevelSpec::init()
 {
     scene = new QGraphicsScene(0,0, 1000, 1000);
-    m = new SnoopyMessaging();
-    t = new QTimer();
-    l = new Level1(scene, m, new FakeSoundHandler, t);
-    gfx2 = new FakeGraphics;
-    l->play();
+    messaging = new SnoopyMessaging();
+    timer = new QTimer();
+    level = new Level1(scene, messaging, new FakeSoundHandler, timer);
+    fakeGraphics = new FakeGraphics;
+    level->play();
 }
 
 
 void LevelSpec::cleanup()
 {
     delete scene;
-    delete m;
-    delete t;
-    delete l;
+    delete messaging;
+    delete timer;
+    delete level;
 }
 
-void LevelSpec::shouldKillPlayerWhenCollidingWithKiller()
+void LevelSpec::onCollideShouldKillPlayerWhenCollidingWithKiller()
 {
     QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Snoopy
-    gfx2->setBounds(r);
-    scene->addItem(gfx2);
+    fakeGraphics->setBounds(r);
+    scene->addItem(fakeGraphics);
 
-    l->addKillObjects(gfx2);
+    level->addKillObjects(fakeGraphics);
 
-    QSignalSpy stateSpy(l, SIGNAL(die()));
+    QSignalSpy stateSpy(level, SIGNAL(die()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    l->onCollide();
+    level->onCollide();
     QCOMPARE(stateSpy.count(), 1);
 }
 
-void LevelSpec::shouldNotKillPlayerWhenCollidingNormalObject()
+void LevelSpec::onCollideShouldNotKillPlayerWhenCollidingNormalObject()
 {
 
     QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Snoopy
-    gfx2->setBounds(r);
-    scene->addItem(gfx2);
-    QSignalSpy stateSpy(l, SIGNAL(die()));
+    fakeGraphics->setBounds(r);
+    scene->addItem(fakeGraphics);
+    QSignalSpy stateSpy(level, SIGNAL(die()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    l->onCollide();
+    level->onCollide();
     QCOMPARE(stateSpy.count(), 0);}
 
-void LevelSpec::shouldNotKillPlayerWhenNotCollidingWithKiller()
+void LevelSpec::onCollideShouldNotKillPlayerWhenNotCollidingWithKiller()
 {
     QRectF r(0, 0, 10, 10);
-    gfx2->setBounds(r);
-    scene->addItem(gfx2);
+    fakeGraphics->setBounds(r);
+    scene->addItem(fakeGraphics);
 
-    l->addKillObjects(gfx2);
+    level->addKillObjects(fakeGraphics);
 
-    QSignalSpy stateSpy(l, SIGNAL(die()));
+    QSignalSpy stateSpy(level, SIGNAL(die()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    l->onCollide();
+    level->onCollide();
     QCOMPARE(stateSpy.count(), 0);
 }
 
-void LevelSpec::shouldNotKillPlayerWhenNotCollidingWithNormalObject()
+void LevelSpec::onCollideShouldNotKillPlayerWhenNotCollidingWithNormalObject()
 {
     QRectF r(0, 0, 10, 10);
-    gfx2->setBounds(r);
-    scene->addItem(gfx2);
+    fakeGraphics->setBounds(r);
+    scene->addItem(fakeGraphics);
 
-    QSignalSpy stateSpy(l, SIGNAL(die()));
+    QSignalSpy stateSpy(level, SIGNAL(die()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    l->onCollide();
+    level->onCollide();
     QCOMPARE(stateSpy.count(), 0);
 }
