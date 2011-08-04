@@ -9,10 +9,10 @@ Feature: Basic movement
 
     Scenario: Moving right
         Given the character is on on position "50"
-        When I keep right arrow pressed down for one second
+        When I keep right arrow pressed down for a while
         Then character should be moving right
 
     Scenario: Moving left
         Given the character is on on position "250"
-        When I keep left arrow pressed down for one second
+        When I keep left arrow pressed down for a while
         Then character should be moving left
