@@ -46,6 +46,8 @@ SnoopySprite::SnoopySprite(SnoopyMessaging *m, SoundHandler *sound, QGraphicsIte
 
     _x = 0;
     _y = 0;
+
+    setObjectName("SnoopySprite");
 }
 
 void SnoopySprite::keyPressEvent(QKeyEvent *event)

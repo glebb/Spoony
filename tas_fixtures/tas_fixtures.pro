@@ -41,7 +41,10 @@ OTHER_FILES += \
     ../features/test_fixtures.xml \
     ../features/step_definitions.rb \
     ../features/startup.feature \
-    ../features/gamescreen.feature
+    ../features/gamescreen.feature \
+    ../features/movement.feature \
+    ../features/movement.rb \
+    ../features/gamescreen.rb
 
 RCC_DIR = "Build/RCCFiles"
 UI_DIR = "Build/UICFiles"
