@@ -60,7 +60,8 @@ HEADERS += \
     snoopyapp.h
 
 OTHER_FILES += \
-    startscreen.qml
+    startscreen.qml \
+    tests/exercise.txt
 
 RCC_DIR = "Build/RCCFiles"
 UI_DIR = "Build/UICFiles"
