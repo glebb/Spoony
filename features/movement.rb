@@ -22,3 +22,5 @@ end
 Then /^character should be moving left$/ do
   $position.should > $app.QGraphicsView( :name => '' ).SnoopySprite.attribute("x").to_i
 end
+
+#TODO: Exercise 4, copy stubs here and implement

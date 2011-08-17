@@ -16,6 +16,7 @@ Then /^lives should be "([^"]*)"$/ do |arg1|
   $temp.should == arg1
 end
 
+#TODO: Exercise 3
 When /^Snoopy dies (\d+) times$/ do |arg1|
   for i in 1..arg1.to_i
     $app.fixture('poonsy', 'die')

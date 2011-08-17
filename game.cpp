@@ -61,6 +61,7 @@ void Game::start(int lives, int level)
 
 void Game::onDie()
 {
+    //TODO: Exercise 3
     _lives--;
     // qDebug() << "die" << lives;
 

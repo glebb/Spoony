@@ -16,3 +16,5 @@ Feature: Basic movement
         Given the character is on on position "250"
         When I keep left arrow pressed down for a while
         Then character should be moving left
+
+    #TODO: Exercise 4, write scenarios for jumping

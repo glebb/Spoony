@@ -6,6 +6,7 @@ Feature: Startup Screen
     Background:
         Given the game starts
 
+    #TODO: Exercise 3
     Scenario: Startup screen with title
         When I do nothing
         Then I should see startupscreen with text SNOOPY

@@ -17,6 +17,7 @@ Feature: Game Screen
         | 3  | "WAS THIS IN THE ORIGINAL?" |
         | 4  | "UNNAMED" |
         
+    #TODO: Exercise 3
     Scenario: Lives without deaths
         When Snoopy has not died
         Then lives should be "3"

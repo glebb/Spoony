@@ -60,5 +60,7 @@ bool SnoopyFixture::execute(void *objectInstance, QString actionName, QHash<QStr
         return true;
     }
 
+    //TODO: Exercise 4, Implement using a fixture
+
     return false;
 }
