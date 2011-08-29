@@ -28,7 +28,7 @@ When /^I do nothing$/ do
   #do nothing
 end
 
-#TODO: Exercise 3
+#TODO: Exercise 4
 Then /^I should see startupscreen with text SNOOPY$/ do
   $app.QDeclarativeText(:name => 'title').attribute("text").should == "SNOOPY"
 end

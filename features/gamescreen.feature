@@ -2,7 +2,10 @@ Feature: Game Screen
     As a Player
     I want to see basic information on my game screen
     So I can keep track on my progress
-        
+
+    The gamescreen contains information about the current level
+    and the player stats (like lives)
+
     Background:
         Given the game is running
 
@@ -17,11 +20,11 @@ Feature: Game Screen
         | 3  | "WAS THIS IN THE ORIGINAL?" |
         | 4  | "UNNAMED" |
         
-    #TODO: Exercise 3
     Scenario: Lives without deaths
         When Snoopy has not died
         Then lives should be "3"
 
+    #TODO: Exercise 4
     Scenario Outline: Lives reduce with death
         When Snoopy dies <nr> times
         Then lives should be <lives>
