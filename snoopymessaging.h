@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-class SnoopyMessaging : public QObject
+class SnoopyMessage : public QObject
 {
     Q_OBJECT
 public:
-    explicit SnoopyMessaging(QObject *parent = 0);
+    explicit SnoopyMessage(QObject *parent = 0);
 
 signals:
     void die();

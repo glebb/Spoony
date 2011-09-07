@@ -7,7 +7,7 @@
 #include "soundhandler.h"
 #include "globals.h"
 
-Level::Level(QGraphicsScene *scene, SnoopyMessaging *m, SoundHandler *sound,
+Level::Level(QGraphicsScene *scene, SnoopyMessage *m, SoundHandler *sound,
              QTimer *timer, QObject *parent) :
     QObject(parent), _scene(scene), _timer(timer)
 {

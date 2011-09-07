@@ -15,7 +15,7 @@ LevelSpec::LevelSpec()
 void LevelSpec::init()
 {
     scene = new QGraphicsScene(0,0, 1000, 1000);
-    messaging = new SnoopyMessaging();
+    messaging = new SnoopyMessage();
     timer = new QTimer();
     level = new Level1(scene, messaging, new FakeSoundHandler, timer);
     fakeGraphics = new FakeGraphics;

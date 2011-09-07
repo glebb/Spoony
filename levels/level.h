@@ -16,7 +16,7 @@ class Level : public QObject
 {
     Q_OBJECT
 public:
-    Level(QGraphicsScene *_scene, SnoopyMessaging *m,
+    Level(QGraphicsScene *_scene, SnoopyMessage *m,
           SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
     ~Level();
 

@@ -10,160 +10,122 @@
 #include <qdeclarativeitem.h>
 
 #include "level.h"
-#include "level1.h"
-#include "level2.h"
-#include "level3.h"
-#include "level4.h"
+#include "levelfactory.h"
 #include "globals.h"
+
 
 
 Game::Game(QObject *parent) : QObject(parent)
 {
-    _m = new SnoopyMessaging(this);
-    timer = new QTimer(this);
-    _speed = DEFAULT_SPEED;
-    timer->start(1000 / _speed);
-    _scene = new QGraphicsScene(0, 0, WIDTH, HEIGHT);
-    _view = new QGraphicsView(_scene);
-    _view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    _view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    _view->setRenderHint(QPainter::Antialiasing);
-    _view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-    _view->setCacheMode(QGraphicsView::CacheBackground);
-    _currentLevel = 0;
-    connect(_m, SIGNAL(finish()), this, SLOT(nextLevel()));
-    connect(_m, SIGNAL(reset()), this, SLOT(onDie()));
-    _engine = new QDeclarativeEngine(this);
-    _engine->rootContext()->setContextProperty("Game", this);
-    _component = new QDeclarativeComponent(_engine, QUrl("qrc:///startscreen.qml"));
-    _component->setObjectName("Startup");
-    _sound = new SoundHandler(this);
-    _lives = LIVES;
+    snoopy_message = new SnoopyMessage(this);
+    global_timer = new QTimer(this);
+    global_speed = DEFAULT_SPEED;
+    global_timer->start(1000 / global_speed);
+    main_scene = new QGraphicsScene(0, 0, WIDTH, HEIGHT);
+    main_view = new QGraphicsView(main_scene);
+    main_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    main_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    main_view->setRenderHint(QPainter::Antialiasing);
+    main_view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    main_view->setCacheMode(QGraphicsView::CacheBackground);
+    current_level = 0;
+    connect(snoopy_message, SIGNAL(finish()), this, SLOT(playNextLevel()));
+    connect(snoopy_message, SIGNAL(reset()), this, SLOT(onDie()));
+    qml_engine = new QDeclarativeEngine(this);
+    qml_engine->rootContext()->setContextProperty("Game", this);
+    qml_startscreen = new QDeclarativeComponent(qml_engine, QUrl("qrc:///startscreen.qml"));
+    qml_startscreen->setObjectName("Startup");
+    sound_handler = new SoundHandler(this);
+    global_lives = LIVES;
     emit ready();
 }
 
 Game::~Game()
 {
-    if (_currentLevel != 0)
-        delete _currentLevel;
+    if (current_level != 0)
+        delete current_level;
 }
 
 void Game::start(int lives, int level)
 {
-    // qDebug() << "start game";
-    _clearScreen();
-    this->_lives = lives;
-    _rounds = 1;
-    _currentLevelNr = level;
-    _createLevel(_currentLevelNr);
-    _currentLevel->play();
+    clearGfxObjectsFromScene();
+    this->global_lives = lives;
+    gamerounds_completed = 0;
+    this->level = level;
+    create_level();
+    current_level->play();
 }
 
-void Game::onDie()
-{
-    //TODO: Exercise 4 //Optional
-    _lives--;
-    // qDebug() << "die" << lives;
-
-    if (_lives == 0)
-        restartGame();
-    else
-        resetLevel();
-}
-
-void Game::nextLevel()
+void Game::playNextLevel()
 {
     // qDebug() << "nextlevel";
-    _currentLevelNr++;
-    _createLevel(_currentLevelNr);
-    _currentLevel->play();
+    level++;
+    create_level();
+    current_level->play();
 }
 
-void Game::_createLevel(int nr)
+void Game::setupScene()
 {
-    if (_currentLevel != 0) {
-        delete _currentLevel;
-    }
-
-    _clearScreen();
-    _currentLevelNr = nr;
-    switch (nr)
-    {
-        case 1:
-            _currentLevel = new Level1(_scene, _m, _sound, timer, this);
-            break;
-        case 2:
-            _currentLevel = new Level3(_scene, _m, _sound, timer, this);
-            break;
-        case 3:
-            _currentLevel = new Level2(_scene, _m, _sound, timer, this);
-            break;
-        case 4:
-            _currentLevel = new Level4(_scene, _m, _sound, timer, this);
-            break;
-
-        default: // Start from beginning
-                _currentLevel = new Level1(_scene, _m, _sound, timer, this);
-                _currentLevelNr = 1;
-                _rounds++;
-                if (_speed < 120)
-                    _speed += _speed / 3;
-                timer->stop();
-                timer->start(1000 / _speed);
-                break;
-    }
-    _text = new QGraphicsSimpleTextItem();
-    _text->setText("LIVES:  " + QString::number(_lives) + " LEVEL " + QString::number(_currentLevelNr) + ":  " + _currentLevel->getName());
-    _text->font().setBold(true);
-    _scene->addItem(_text);
-    _text->setPos(20, 10);
-    // qDebug() << "created level" << currentLevelNr;
-
+    clearGfxObjectsFromScene();
+    lives_text = new QGraphicsSimpleTextItem();
+    lives_text->setText("LIVES:  " + QString::number(global_lives) + " LEVEL " + QString::number(level) + ":  " + current_level->getName());
+    lives_text->font().setBold(true);
+    main_scene->addItem(lives_text);
+    lives_text->setPos(20, 10);
 }
 
 void Game::restartGame()
 {
-    // qDebug() << "restart game";
-    _lives = LIVES;
-    _speed = DEFAULT_SPEED;
-    timer->stop();
-    timer->start(1000 / _speed);
+    global_lives = LIVES;
+    global_speed = DEFAULT_SPEED;
+    global_timer->stop();
+    global_timer->start(1000 / global_speed);
     showStartupScreen();
 }
 
 void Game::initializeGame()
 {
-    // qDebug() << "initialize game";
-    _rounds = 1;
-    _currentLevelNr = 1;
-    _view->show();
+    gamerounds_completed = 0;
+    level = 1;
+    main_view->show();
 }
+
+void Game::onDie()
+{
+    //TODO: Exercise 4 //Optional
+    global_lives--;
+
+    if (global_lives == 0)
+        restartGame();
+    else
+        resetLevel();
+}
+
 
 void Game::setCurrentLevel(int level)
 {
-    _currentLevelNr = level;
+    this->level = level;
     resetLevel();
 }
 
 void Game::setCurrentLevel(Level *level)
 {
-    _currentLevel = level;
+    current_level = level;
 }
 
 void Game::resetLevel()
 {
-    // qDebug() << "reset level";
-    _createLevel(_currentLevelNr);
-    _currentLevel->play();
+    create_level();
+    current_level->play();
 }
 
 void Game::showStartupScreen()
 {
-    _clearScreen();
+    clearGfxObjectsFromScene();
 
-    if (_component->isLoading())
+    if (qml_startscreen->isLoading())
     {
-        QObject::connect(_component, SIGNAL(statusChanged(QDeclarativeComponent::Status)),
+        QObject::connect(qml_startscreen, SIGNAL(statusChanged(QDeclarativeComponent::Status)),
                          this, SLOT(continueLoading()));
     }
     else continueLoading();
@@ -171,22 +133,29 @@ void Game::showStartupScreen()
 
 void Game::continueLoading()
 {
-    if (_component->isError())
+    if (qml_startscreen->isError())
     {
-        qWarning() << _component->errors();
+        qWarning() << qml_startscreen->errors();
     }
     else
     {
-        _item = qobject_cast<QDeclarativeItem *>(_component->create());
-        _scene->addItem(_item);
-        _item->grabKeyboard();
+        qmlStartScreenItem = qobject_cast<QDeclarativeItem *>(qml_startscreen->create());
+        main_scene->addItem(qmlStartScreenItem);
+        qmlStartScreenItem->grabKeyboard();
     }
 }
 
-void Game::_clearScreen()
+void Game::clearGfxObjectsFromScene()
 {
     // Let's keep the startupscreen existing
-    if (_scene->items().contains(_item))
-        _scene->removeItem(_item);
-    _scene->clear(); // Everything else can go.
+    if (main_scene->items().contains(qmlStartScreenItem))
+        main_scene->removeItem(qmlStartScreenItem);
+    main_scene->clear(); // Everything else can go.
+}
+
+void Game::create_level()
+{
+    delete current_level;
+    current_level = LevelFactory::create(level, main_scene, snoopy_message, sound_handler, global_timer, this);
+    setupScene();
 }

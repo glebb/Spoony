@@ -15,7 +15,7 @@
 const int SnoopySprite::spriteWidth = 121;
 const int SnoopySprite::spriteHeight = 150;
 
-SnoopySprite::SnoopySprite(SnoopyMessaging *m, SoundHandler *sound, QGraphicsItem * parent)
+SnoopySprite::SnoopySprite(SnoopyMessage *m, SoundHandler *sound, QGraphicsItem * parent)
     :QGraphicsObject(parent), m(m), _sound(sound)
 {
     _mSpriteImage = new QPixmap(":/images/snoopy.png");

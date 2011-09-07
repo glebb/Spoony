@@ -1,26 +1,26 @@
 #include "snoopymessaging.h"
 
-SnoopyMessaging::SnoopyMessaging(QObject *parent) :
+SnoopyMessage::SnoopyMessage(QObject *parent) :
     QObject(parent)
 {
 }
 
-void SnoopyMessaging::onDie()
+void SnoopyMessage::onDie()
 {
     emit die();
 }
 
-void SnoopyMessaging::onCollide()
+void SnoopyMessage::onCollide()
 {
     emit collides();
 }
 
-void SnoopyMessaging::onFinish()
+void SnoopyMessage::onFinish()
 {
     emit finish();
 }
 
-void SnoopyMessaging::onResetLevel()
+void SnoopyMessage::onResetLevel()
 {
     emit reset();
 }

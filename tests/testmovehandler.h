@@ -5,7 +5,7 @@
 
 #include "movehandler.h"
 
-class SnoopyMessaging;
+class SnoopyMessage;
 class SnoopySprite;
 
 class MoveHandlerSpec : public QObject
@@ -30,7 +30,7 @@ private Q_SLOTS:
     void changeDirShouldChangePlayerDirection();
 
 private:
-    SnoopyMessaging *messaging;
+    SnoopyMessage *messaging;
     SnoopySprite *snoopy;
     MoveHandler *move_handler;
 

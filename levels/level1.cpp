@@ -8,7 +8,7 @@
 #include "snoopysprite.h"
 #include "globals.h"
 
-Level1::Level1(QGraphicsScene *scene, SnoopyMessaging *m, SoundHandler *sound, QTimer *timer,
+Level1::Level1(QGraphicsScene *scene, SnoopyMessage *m, SoundHandler *sound, QTimer *timer,
                QObject *parent) : Level(scene, m, sound, timer, parent)
 {
     _name = "LOOK OUT SNOOPY";

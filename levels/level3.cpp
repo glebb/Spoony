@@ -7,7 +7,7 @@
 #include "snoopysprite.h"
 #include "globals.h"
 
-Level3::Level3(QGraphicsScene *scene, SnoopyMessaging *m, SoundHandler *sound, QTimer *timer, QObject *parent) :
+Level3::Level3(QGraphicsScene *scene, SnoopyMessage *m, SoundHandler *sound, QTimer *timer, QObject *parent) :
     Level(scene, m, sound, timer, parent)
 {
     _name = "JUMPING SNOOPY";

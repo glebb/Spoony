@@ -21,7 +21,7 @@ SnoopyFixture::~SnoopyFixture()
 
 bool SnoopyFixture::execute(void *objectInstance, QString actionName, QHash<QString, QString> parameters, QString &stdOut)
 {
-    SnoopyApp *app = static_cast<SnoopyApp *>(objectInstance);
+    SnoopyApplication *app = static_cast<SnoopyApplication *>(objectInstance);
     if (actionName == "getLevelName") {
         stdOut = app->getGame()->getCurrentLevel()->getName();
         return true;

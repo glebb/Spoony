@@ -31,6 +31,7 @@ SOURCES += testgame.cpp \
         ../snoopymessaging.cpp \
         ../inputintercepter.cpp \
         ../snoopyapp.cpp \
+        ../levelfactory.cpp \
         main.cpp \
         fakelevel.cpp \
         testlevel.cpp \

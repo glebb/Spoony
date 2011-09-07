@@ -4,7 +4,7 @@
 #include <QtTest/QtTest>
 
 class InputHandler;
-class SnoopyMessaging;
+class SnoopyMessage;
 class SnoopySprite;
 
 class InputHandlerSpec : public QObject
@@ -28,7 +28,7 @@ private Q_SLOTS:
 
 private:
     InputHandler *i;
-    SnoopyMessaging *m;
+    SnoopyMessage *m;
     SnoopySprite *snoopy;
 
 };

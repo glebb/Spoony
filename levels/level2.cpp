@@ -4,7 +4,7 @@
 #include "snoopysprite.h"
 #include "globals.h"
 
-Level2::Level2(QGraphicsScene *scene, SnoopyMessaging *m, SoundHandler *sound, QTimer *timer, QObject *parent) :
+Level2::Level2(QGraphicsScene *scene, SnoopyMessage *m, SoundHandler *sound, QTimer *timer, QObject *parent) :
     Level(scene, m, sound, timer, parent)
 {
     _name = "WAS THIS IN THE ORIGINAL?";

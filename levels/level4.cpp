@@ -10,7 +10,7 @@
 #include "movingstick.h"
 
 
-Level4::Level4(QGraphicsScene *_scene, SnoopyMessaging *m, SoundHandler *sound,
+Level4::Level4(QGraphicsScene *_scene, SnoopyMessage *m, SoundHandler *sound,
                QTimer *_timer, QObject *parent):
     Level(_scene, m, sound, _timer, parent)
 {

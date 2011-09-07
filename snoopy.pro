@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     levels/level4.cpp \
     sprites/movingstick.cpp \
     inputintercepter.cpp \
-    snoopyapp.cpp
+    snoopyapp.cpp \
+    levelfactory.cpp
 
 HEADERS += \
     standingstate.h \
@@ -57,7 +58,8 @@ HEADERS += \
     levels/level4.h \
     sprites/movingstick.h \
     inputintercepter.h \
-    snoopyapp.h
+    snoopyapp.h \
+    levelfactory.h
 
 OTHER_FILES += \
     startscreen.qml \

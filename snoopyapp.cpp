@@ -2,28 +2,28 @@
 
 #include <phonon/mediaobject.h>
 
-SnoopyApp::SnoopyApp(int argc, char *argv[]):
+SnoopyApplication::SnoopyApplication(int argc, char *argv[]):
     QApplication(argc, argv)
 {
-    setApplicationName("Poonsy");
+    setApplicationName("Snoopy");
     input_intercepter = new InputIntercepter();
     installEventFilter(input_intercepter);
 
     //Music
     Phonon::MediaObject *music =
          Phonon::createPlayer(Phonon::MusicCategory,
-                              Phonon::MediaSource(QApplication::applicationDirPath() + "/sounds/entertainer.mp3"));
+                              Phonon::MediaSource(QApplication::applicationDirPath()
+                                                  + "/sounds/entertainer.mp3"));
     music->play();
-
     game = new Game;
     game->initializeGame();
     game->showStartupScreen();
     connect(game, SIGNAL(ready()), this, SIGNAL(applicationReady()));
 }
 
-SnoopyApp::~SnoopyApp()
+SnoopyApplication::~SnoopyApplication()
 {
     delete input_intercepter;
     delete game;
-//    delete music;
 }
+

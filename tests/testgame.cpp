@@ -14,7 +14,7 @@ GameSpec::GameSpec()
 
 void GameSpec::init()
 {
-    m = new SnoopyMessaging;
+    m = new SnoopyMessage;
     timer = new QTimer;
     level = new FakeLevel(0, m, new FakeSoundHandler, timer);
     game = new Game();
@@ -28,12 +28,12 @@ void GameSpec::cleanup()
     delete game;
 }
 
-void GameSpec::getRoundShouldBeOneOnStart()
+void GameSpec::getRoundShouldBeZeroOnStart()
 {
     game->setCurrentLevel(level);
     game->start(3);
     int round = game->getRound();
-    QCOMPARE(round, 1);
+    QCOMPARE(round, 0);
 }
 
 void GameSpec::getCurrentLevelShouldBeOneOnStart()
@@ -56,7 +56,7 @@ void GameSpec::onDieShouldReduceLivesByOne()
 void GameSpec::nextLevelshouldChangeCurrentLevel()
 {
     game->setCurrentLevel(level);
-    game->nextLevel();
+    game->playNextLevel();
     Level *current_level = game->getCurrentLevel();
     QVERIFY(level != current_level);
 }
@@ -71,14 +71,14 @@ void GameSpec::restartGameShouldSetLevelToOne()
     QCOMPARE(1, level);
 }
 
-void GameSpec::restartGameShouldSetRoundToOne()
+void GameSpec::restartGameShouldSetCompletedRoundToZero()
 {
     game->setCurrentLevel(level);
     game->start(3);
     game->onDie();
     game->restartGame();
     int round = game->getRound();
-    QCOMPARE(1, round);
+    QCOMPARE(0, round);
 }
 
 void GameSpec::restartGameShouldSetLivesToDefault()
@@ -97,5 +97,4 @@ void GameSpec::resetLeveShouldCreateLevelAgainOnReset()
     game->resetLevel();
     Level *current_level = game->getCurrentLevel();
     QVERIFY(level != current_level);
-
 }

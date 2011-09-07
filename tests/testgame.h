@@ -5,7 +5,7 @@
 
 class Game;
 class FakeLevel;
-class SnoopyMessaging;
+class SnoopyMessage;
 class QTimer;
 
 class GameSpec : public QObject
@@ -21,17 +21,17 @@ private Q_SLOTS:
 
     void resetLeveShouldCreateLevelAgainOnReset();
     void restartGameShouldSetLivesToDefault();
-    void restartGameShouldSetRoundToOne();
+    void restartGameShouldSetCompletedRoundToZero();
     void restartGameShouldSetLevelToOne();
     void nextLevelshouldChangeCurrentLevel();
     void onDieShouldReduceLivesByOne();
     void getCurrentLevelShouldBeOneOnStart();
-    void getRoundShouldBeOneOnStart();
+    void getRoundShouldBeZeroOnStart();
 
 private:
     Game *game;
     FakeLevel *level;
-    SnoopyMessaging *m;
+    SnoopyMessage *m;
     QTimer *timer;
 
 };

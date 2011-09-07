@@ -25,7 +25,8 @@ SOURCES += snoopyfixture.cpp \
         ../jumpingstate.cpp \
         ../snoopymessaging.cpp \
         ../inputintercepter.cpp \
-        ../snoopyapp.cpp
+        ../snoopyapp.cpp \
+        ../levelfactory.cpp
 
 HEADERS += snoopyfixture.h \
     ../levels/*.h \

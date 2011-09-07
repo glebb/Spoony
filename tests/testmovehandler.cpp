@@ -18,7 +18,7 @@ MoveHandlerSpec::MoveHandlerSpec()
 
 void MoveHandlerSpec::init()
 {
-    messaging = new SnoopyMessaging;
+    messaging = new SnoopyMessage;
     snoopy = new SnoopySprite(messaging, new FakeSoundHandler);
     move_handler = new MoveHandler;
     move_handler->setSnoopy(snoopy);

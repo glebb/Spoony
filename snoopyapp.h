@@ -8,16 +8,17 @@
 #include "globals.h"
 #include "inputintercepter.h"
 
-class SnoopyApp : public QApplication
+class SnoopyApplication : public QApplication
 {
     Q_OBJECT
 public:
-    SnoopyApp(int argc, char* argv[]);
-    ~SnoopyApp();
+    SnoopyApplication(int argc, char* argv[]);
+    ~SnoopyApplication();
 
     Game *getGame() {return game;}
 signals:
     void applicationReady();
+
 private:
     InputIntercepter *input_intercepter;
     Game *game;

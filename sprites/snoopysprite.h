@@ -11,7 +11,7 @@
 #include "inputhandler.h"
 #include "soundhandler.h"
 
-class SnoopyMessaging;
+class SnoopyMessage;
 
 class QPainter;
 
@@ -20,7 +20,7 @@ class SnoopySprite: public QGraphicsObject
     Q_OBJECT
 public:
 
-    SnoopySprite(SnoopyMessaging *m, SoundHandler *_sound, QGraphicsItem * parent = 0);
+    SnoopySprite(SnoopyMessage *m, SoundHandler *_sound, QGraphicsItem * parent = 0);
 
     ~SnoopySprite();
 
@@ -39,7 +39,7 @@ public:
     bool dying;
     MoveHandler move;
 
-    SnoopyMessaging *m;
+    SnoopyMessage *m;
 
 
 

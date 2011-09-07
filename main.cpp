@@ -3,6 +3,6 @@
 
 int main(int argc, char* argv[])
 {
-    SnoopyApp app(argc, argv);
+    SnoopyApplication app(argc, argv);
     return app.exec();
 }

@@ -15,7 +15,7 @@ InputHandlerSpec::InputHandlerSpec()
 void InputHandlerSpec::init()
 {
     i = new InputHandler;
-    m = new SnoopyMessaging;
+    m = new SnoopyMessage;
     snoopy = new SnoopySprite(m, new FakeSoundHandler);
 
 }
