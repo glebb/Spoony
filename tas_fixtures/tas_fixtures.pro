@@ -9,6 +9,9 @@ QT       += declarative \
 
 TARGET = tas_noopsy
 TEMPLATE = lib
+CONFIG += dll
+
+DESTDIR = $$[QT_INSTALL_PLUGINS]/tasfixtures
 
 DEFINES += TAS_FIXTURES_LIBRARY
 
@@ -52,33 +55,12 @@ UI_DIR = "Build/UICFiles"
 MOC_DIR = "Build/MOCFiles"
 OBJECTS_DIR = "Build/ObjFiles"
 
-CONFIG(debug, debug|release) {
-    DESTDIR = "debug"
-}
-CONFIG(release, debug|release) {
-    DESTDIR = "release"
-}
-
 unix {
-LIBS += /usr/lib/libqttestability.so
-INCLUDEPATH += /usr/include/tdriver/
-}
-
-macx {
-LIBS += /Users/antti/tinkerin/tdriver/agent_qt/tascore/lib/libqttestability.dylib
+LIBS += -lqttestability
 INCLUDEPATH += /usr/include/tdriver/
 }
 
 win32 {
 LIBS += c:/qttas/lib/qttestability.dll
 INCLUDEPATH += c:/qttas/inc
-}
-
-
-win32{
-QMAKE_POST_LINK += "xcopy /Y /i /e /c $$DESTDIR\\tas_noopsy.dll C:\\QtSDK\\Desktop\\Qt\\4.7.3\\mingw\\plugins\\tasfixtures\\"
-}
-
-macx{
-QMAKE_POST_LINK += "cp $$DESTDIR/libtas_noopsy.dylib /Users/antti/tasfixtures/"
 }

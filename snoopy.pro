@@ -87,8 +87,7 @@ QMAKE_POST_LINK += mkdir -p $$DESTDIR/sounds && cp sounds/* $$DESTDIR/sounds/
 }
 
 macx{
-QMAKE_POST_LINK += mkdir -p $$DESTDIR/Snoopy.app/Contents/MacOS/sounds && cp sounds/* $$DESTDIR/Snoopy.app/Contents/MacOS/sounds/
-
+QMAKE_POST_LINK += && mkdir -p $$DESTDIR/Snoopy.app/Contents/MacOS/sounds && cp sounds/* $$DESTDIR/Snoopy.app/Contents/MacOS/sounds/
 }
 
 win32{

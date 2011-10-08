@@ -58,7 +58,7 @@ win32 {
 DEFINES += WIN32
 }
 
-macx{
+unix {
 QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 QMAKE_LDFLAGS += -fprofile-arcs -ftest-coverage
 LIBS += -lgcov
