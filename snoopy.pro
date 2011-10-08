@@ -1,69 +1,70 @@
 QT += declarative \
     phonon
+
 TEMPLATE = app
 TARGET = Snoopy
 DEPENDPATH += .Snoopy
-INCLUDEPATH += . \
-    levels \
-    sprites \
 
-RESOURCES += snoopy.qrc
+INCLUDEPATH += src/. \
+    src/levels \
+    src/sprites \
+
+RESOURCES += src/snoopy.qrc
 
 # Input
-SOURCES += main.cpp \
-    standingstate.cpp \
-    sprites/snoopysprite.cpp \
-    runningstate.cpp \
-    snoopystate.cpp \
-    sprites/ground.cpp \
-    inputhandler.cpp \
-    movehandler.cpp \
-    sprites/hole.cpp \
-    game.cpp \
-    levels/level1.cpp \
-    levels/level.cpp \
-    levels/level2.cpp \
-    levels/level3.cpp \
-    sprites/movingtriangle.cpp \
-    snoopymessaging.cpp \
-    jumpingstate.cpp \
-    soundhandler.cpp \
-    sprites/basicsprite.cpp \
-    levels/level4.cpp \
-    sprites/movingstick.cpp \
-    inputintercepter.cpp \
-    snoopyapp.cpp \
-    levelfactory.cpp
+SOURCES += src/main.cpp \
+    src/standingstate.cpp \
+    src/sprites/snoopysprite.cpp \
+    src/runningstate.cpp \
+    src/snoopystate.cpp \
+    src/sprites/ground.cpp \
+    src/inputhandler.cpp \
+    src/movehandler.cpp \
+    src/sprites/hole.cpp \
+    src/game.cpp \
+    src/levels/level1.cpp \
+    src/levels/level.cpp \
+    src/levels/level2.cpp \
+    src/levels/level3.cpp \
+    src/sprites/movingtriangle.cpp \
+    src/snoopymessaging.cpp \
+    src/jumpingstate.cpp \
+    src/soundhandler.cpp \
+    src/sprites/basicsprite.cpp \
+    src/levels/level4.cpp \
+    src/sprites/movingstick.cpp \
+    src/inputintercepter.cpp \
+    src/snoopyapp.cpp \
+    src/levelfactory.cpp
 
 HEADERS += \
-    standingstate.h \
-    runningstate.h \
-    sprites/snoopysprite.h \
-    snoopystate.h \
-    sprites/ground.h \
-    inputhandler.h \
-    movehandler.h \
-    sprites/hole.h \
-    game.h \
-    levels/level1.h \
-    levels/level.h \
-    levels/level2.h \
-    levels/level3.h \
-    sprites/movingtriangle.h \
-    snoopymessaging.h \
-    globals.h \
-    jumpingstate.h \
-    soundhandler.h \
-    sprites/basicsprite.h \
-    levels/level4.h \
-    sprites/movingstick.h \
-    inputintercepter.h \
-    snoopyapp.h \
-    levelfactory.h
+    src/standingstate.h \
+    src/runningstate.h \
+    src/sprites/snoopysprite.h \
+    src/snoopystate.h \
+    src/sprites/ground.h \
+    src/inputhandler.h \
+    src/movehandler.h \
+    src/sprites/hole.h \
+    src/game.h \
+    src/levels/level1.h \
+    src/levels/level.h \
+    src/levels/level2.h \
+    src/levels/level3.h \
+    src/sprites/movingtriangle.h \
+    src/snoopymessaging.h \
+    src/globals.h \
+    src/jumpingstate.h \
+    src/soundhandler.h \
+    src/sprites/basicsprite.h \
+    src/levels/level4.h \
+    src/sprites/movingstick.h \
+    src/inputintercepter.h \
+    src/snoopyapp.h \
+    src/levelfactory.h
 
 OTHER_FILES += \
-    startscreen.qml \
-    tests/exercise.txt
+    src/startscreen.qml
 
 RCC_DIR = "Build/RCCFiles"
 UI_DIR = "Build/UICFiles"

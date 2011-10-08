@@ -13,25 +13,25 @@ CONFIG   += console
 CONFIG   -= app_bundle
 
 TEMPLATE = app
-INCLUDEPATH += ../ \
-        ../sprites/ \
-        ../levels/
+INCLUDEPATH += ../src/ \
+        ../src/sprites/ \
+        ../src/levels/
 
 SOURCES += testgame.cpp \
-        ../game.cpp \
-        ../levels/*.cpp \
-        ../sprites/*.cpp \
-        ../inputhandler.cpp \
-        ../movehandler.cpp \
-        ../soundhandler.cpp \
-        ../runningstate.cpp \
-        ../snoopystate.cpp \
-        ../standingstate.cpp \
-        ../jumpingstate.cpp \
-        ../snoopymessaging.cpp \
-        ../inputintercepter.cpp \
-        ../snoopyapp.cpp \
-        ../levelfactory.cpp \
+        ../src/game.cpp \
+        ../src/levels/*.cpp \
+        ../src/sprites/*.cpp \
+        ../src/inputhandler.cpp \
+        ../src/movehandler.cpp \
+        ../src/soundhandler.cpp \
+        ../src/runningstate.cpp \
+        ../src/snoopystate.cpp \
+        ../src/standingstate.cpp \
+        ../src/jumpingstate.cpp \
+        ../src/snoopymessaging.cpp \
+        ../src/inputintercepter.cpp \
+        ../src/snoopyapp.cpp \
+        ../src/levelfactory.cpp \
         main.cpp \
         fakelevel.cpp \
         testlevel.cpp \
@@ -41,9 +41,9 @@ SOURCES += testgame.cpp \
         testinputintercepter.cpp
 
 
-HEADERS += ../*.h \
-    ../levels/*.h \
-    ../sprites/*.h \
+HEADERS += ../src/*.h \
+    ../src/levels/*.h \
+    ../src/sprites/*.h \
     testgame.h \
     fakelevel.h \
     testlevel.h \
@@ -75,6 +75,3 @@ CONFIG(debug, debug|release) {
 CONFIG(release, debug|release) {
     DESTDIR = "release"
 }
-
-RESOURCES += \
-    ../snoopy.qrc

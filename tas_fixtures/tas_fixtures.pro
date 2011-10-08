@@ -16,30 +16,30 @@ DESTDIR = $$[QT_INSTALL_PLUGINS]/tasfixtures
 DEFINES += TAS_FIXTURES_LIBRARY
 
 SOURCES += snoopyfixture.cpp \
-        ../game.cpp \
-        ../levels/*.cpp \
-        ../sprites/*.cpp \
-        ../inputhandler.cpp \
-        ../movehandler.cpp \
-        ../soundhandler.cpp \
-        ../runningstate.cpp \
-        ../snoopystate.cpp \
-        ../standingstate.cpp \
-        ../jumpingstate.cpp \
-        ../snoopymessaging.cpp \
-        ../inputintercepter.cpp \
-        ../snoopyapp.cpp \
-        ../levelfactory.cpp
+        ../src/game.cpp \
+        ../src/levels/*.cpp \
+        ../src/sprites/*.cpp \
+        ../src/inputhandler.cpp \
+        ../src/movehandler.cpp \
+        ../src/soundhandler.cpp \
+        ../src/runningstate.cpp \
+        ../src/snoopystate.cpp \
+        ../src/standingstate.cpp \
+        ../src/jumpingstate.cpp \
+        ../src/snoopymessaging.cpp \
+        ../src/inputintercepter.cpp \
+        ../src/snoopyapp.cpp \
+        ../src/levelfactory.cpp
 
 HEADERS += snoopyfixture.h \
-    ../levels/*.h \
-    ../sprites/*.h \
-    ../*.h
+    ../src/levels/*.h \
+    ../src/sprites/*.h \
+    ../src/*.h
 
 
-INCLUDEPATH += ../sprites/ \
-        ../levels/ \
-        ../
+INCLUDEPATH += ../src/sprites/ \
+        ../src/levels/ \
+        ../src/
 
 OTHER_FILES += \
     ../features/test_fixtures.xml \
