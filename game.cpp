@@ -142,6 +142,7 @@ void Game::continueLoading()
         qmlStartScreenItem = qobject_cast<QDeclarativeItem *>(qml_startscreen->create());
         main_scene->addItem(qmlStartScreenItem);
         qmlStartScreenItem->grabKeyboard();
+        main_view->raise();
     }
 }
 
