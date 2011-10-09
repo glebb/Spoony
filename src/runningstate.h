@@ -10,9 +10,6 @@ class RunningState : public SnoopyState
 public:
     RunningState( SnoopySprite* snoopy);
 
-    void onEntry ( QEvent * event );
-    void onExit ( QEvent * event );
-
 private slots:
 
     void nextFrame();
