@@ -9,4 +9,4 @@ The game itself attempts to recreate the classic C64 game Snoopy. Even though it
 
 Animation for Snoopy provided by: GameCreator /allegro.cc
 
-![Screenshot](screenshot.png)
+![Screenshot](./screenshot.png)
