@@ -8,3 +8,5 @@ Test automation with QTestLib and [Cucumber](http://cukes.info/) + [Testability 
 The game itself attempts to recreate the classic C64 game Snoopy. Even though it's unfinished, it's playable :)
 
 Animation for Snoopy provided by: GameCreator /allegro.cc
+
+![Screenshot](screenshot.png)
