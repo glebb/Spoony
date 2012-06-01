@@ -22,7 +22,9 @@ signals:
 private:
     InputIntercepter *input_intercepter;
     Game *game;
-    QSound *music;
+    Phonon::MediaObject *music;
+    Phonon::AudioOutput *audioOutput;
+
 
 };
 

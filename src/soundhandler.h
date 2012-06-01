@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <phonon/mediaobject.h>
+#include <Phonon/AudioOutput>
+
 
 class SoundHandler : public QObject
 {
@@ -18,6 +20,7 @@ public slots:
 
 private:
     Phonon::MediaObject *sound;
+    Phonon::AudioOutput *audioOutput;
 };
 
 #endif // SOUNDHANDLER_H

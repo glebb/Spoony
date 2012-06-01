@@ -6,13 +6,17 @@
 SoundHandler::SoundHandler(QObject *parent) :
     QObject(parent)
 {
-    sound = Phonon::createPlayer(Phonon::MusicCategory);
-
+    sound = new Phonon::MediaObject(this);
+    audioOutput =
+        new Phonon::AudioOutput(Phonon::GameCategory, this);
+    Phonon::createPath(sound, audioOutput);
+    audioOutput->setVolume(0.15);
 }
 
 SoundHandler::~SoundHandler()
 {
     delete sound;
+    delete audioOutput;
 }
 
 void SoundHandler::playSound(QString filename)

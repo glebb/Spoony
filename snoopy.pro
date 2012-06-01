@@ -69,7 +69,7 @@ OTHER_FILES += \
 RCC_DIR = "Build/RCCFiles"
 UI_DIR = "Build/UICFiles"
 MOC_DIR = "Build/MOCFiles"
-#OBJECTS_DIR = "Build/ObjFiles"
+OBJECTS_DIR = "Build/ObjFiles"
 
 CONFIG(debug, debug|release) {
     DESTDIR = "debug"

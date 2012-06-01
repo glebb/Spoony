@@ -10,10 +10,13 @@ SnoopyApplication::SnoopyApplication(int argc, char *argv[]):
     installEventFilter(input_intercepter);
 
     //Music
-    Phonon::MediaObject *music =
-         Phonon::createPlayer(Phonon::MusicCategory,
-                              Phonon::MediaSource(QApplication::applicationDirPath()
-                                                  + "/sounds/entertainer.mp3"));
+    audioOutput =
+        new Phonon::AudioOutput(Phonon::GameCategory, this);
+    music = new Phonon::MediaObject(this);
+    Phonon::createPath(music, audioOutput);
+    audioOutput->setVolume(0.25);
+    music->setCurrentSource(Phonon::MediaSource(QApplication::applicationDirPath()
+                                                + "/sounds/entertainer.mp3"));
     music->play();
     game = new Game;
     game->initializeGame();
@@ -25,5 +28,7 @@ SnoopyApplication::~SnoopyApplication()
 {
     delete input_intercepter;
     delete game;
+    delete music;
+    delete audioOutput;
 }
 
