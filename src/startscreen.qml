@@ -16,7 +16,7 @@ Item
     {
         id: title
         objectName: "title"
-        text: "SNOOPY"
+        text: "SPOONY"
         anchors.verticalCenter: page.verticalCenter
         anchors.horizontalCenter: page.horizontalCenter
         font.pointSize: 80; font.bold: true
@@ -38,7 +38,7 @@ Item
         objectName: "info"
         y: 10
         anchors.horizontalCenter: page.horizontalCenter
-        text: "Tribute to classic C64 game Snoopy by C. Kramer"
+        text: "A Tribute to classic C64 game"
         font.pointSize: 16;
     }
 

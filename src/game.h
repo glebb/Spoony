@@ -7,7 +7,7 @@
 #include "soundhandler.h"
 
 class Level;
-class SnoopyMessage;
+class SpoonyMessage;
 class QDeclarativeEngine;
 class QDeclarativeComponent;
 class QDeclarativeItem;
@@ -55,7 +55,7 @@ private:
     int global_lives;
     int level;
 
-    SnoopyMessage *snoopy_message;
+    SpoonyMessage *spoony_message;
 
     QGraphicsScene *main_scene;
     QGraphicsView *main_view;

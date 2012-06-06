@@ -8,7 +8,7 @@ QT       += testlib \
         declarative \
         phonon
 
-TARGET = SnoopyTests
+TARGET = spoonytests
 CONFIG   += console
 CONFIG   -= app_bundle
 
@@ -25,12 +25,12 @@ SOURCES += testgame.cpp \
         ../src/movehandler.cpp \
         ../src/soundhandler.cpp \
         ../src/runningstate.cpp \
-        ../src/snoopystate.cpp \
+        ../src/spoonystate.cpp \
         ../src/standingstate.cpp \
         ../src/jumpingstate.cpp \
-        ../src/snoopymessaging.cpp \
+        ../src/spoonymessaging.cpp \
         ../src/inputintercepter.cpp \
-        ../src/snoopyapp.cpp \
+        ../src/spoonyapp.cpp \
         ../src/levelfactory.cpp \
         main.cpp \
         fakelevel.cpp \
@@ -67,7 +67,7 @@ LIBS += -lgcov
 RCC_DIR = "Build/RCCFiles"
 UI_DIR = "Build/UICFiles"
 MOC_DIR = "Build/MOCFiles"
-#OBJECTS_DIR = "Build/ObjFiles"
+OBJECTS_DIR = "Build/ObjFiles"
 
 CONFIG(debug, debug|release) {
     DESTDIR = "debug"

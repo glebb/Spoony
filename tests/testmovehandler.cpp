@@ -1,8 +1,8 @@
 #include "testmovehandler.h"
 
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 #include "movehandler.h"
-#include "snoopymessaging.h"
+#include "spoonymessaging.h"
 #include "globals.h"
 #include "fakegraphics.h"
 #include "soundhandler.h"
@@ -18,100 +18,100 @@ MoveHandlerSpec::MoveHandlerSpec()
 
 void MoveHandlerSpec::init()
 {
-    messaging = new SnoopyMessage;
-    snoopy = new SnoopySprite(messaging, new FakeSoundHandler);
+    messaging = new SpoonyMessage;
+    spoony = new SpoonySprite(messaging, new FakeSoundHandler);
     move_handler = new MoveHandler;
-    move_handler->setSnoopy(snoopy);
+    move_handler->setSpoony(spoony);
 }
 
 void MoveHandlerSpec::cleanup()
 {
     delete messaging;
     delete move_handler;
-    delete snoopy;
+    delete spoony;
 
 }
 
-void MoveHandlerSpec::moveSnoopyShouldEmitDieWhenDying()
+void MoveHandlerSpec::moveSpoonyShouldEmitDieWhenDying()
 {
     QSignalSpy stateSpy(move_handler, SIGNAL(die()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    move_handler->moveSnoopy();
+    move_handler->moveSpoony();
     QCOMPARE(stateSpy.count(), 0);
-    snoopy->dying = true;
-    move_handler->moveSnoopy();
+    spoony->dying = true;
+    move_handler->moveSpoony();
     QCOMPARE(stateSpy.count(), 1);
 }
 
-void MoveHandlerSpec::moveSnoopyShouldEmitJumpWhenJumping()
+void MoveHandlerSpec::moveSpoonyShouldEmitJumpWhenJumping()
 {
     QSignalSpy stateSpy(move_handler, SIGNAL(jump()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    move_handler->moveSnoopy();
+    move_handler->moveSpoony();
     QCOMPARE(stateSpy.count(), 0);
     move_handler->jumping = true;
-    move_handler->moveSnoopy();
+    move_handler->moveSpoony();
     QCOMPARE(stateSpy.count(), 1);
 }
 
-void MoveHandlerSpec::moveSnoopyShouldEmitCollideWhenColliding()
+void MoveHandlerSpec::moveSpoonyShouldEmitCollideWhenColliding()
 {
     QGraphicsScene *scene = new QGraphicsScene(0,0, 1000, 1000);
-    scene->addItem(snoopy);
-    snoopy->setPos(DEFAULT_START_POSITION);
+    scene->addItem(spoony);
+    spoony->setPos(DEFAULT_START_POSITION);
     QSignalSpy stateSpy(move_handler, SIGNAL(collides()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    move_handler->moveSnoopy();
+    move_handler->moveSpoony();
     QCOMPARE(stateSpy.count(), 0);
-    QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Snoopy
+    QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Spoony
     FakeGraphics *gfx2 = new FakeGraphics();
     gfx2->setBounds(r);
     scene->addItem(gfx2);
-    move_handler->moveSnoopy();
+    move_handler->moveSpoony();
     QCOMPARE(stateSpy.count(), 1);
-    scene->removeItem(snoopy);
+    scene->removeItem(spoony);
     delete scene;
 }
 
 
-void MoveHandlerSpec::moveSnoopyShouldMovePlayerLeftInXCoordinate()
+void MoveHandlerSpec::moveSpoonyShouldMovePlayerLeftInXCoordinate()
 {
     move_handler->moving = true;
-    int originalLocation = snoopy->x();
+    int originalLocation = spoony->x();
     move_handler->goingLeft = true;
     move_handler->goingRight = false;
-    move_handler->changeDir(snoopy);
-    move_handler->moveSnoopy();
-    QVERIFY(originalLocation > snoopy->x());
+    move_handler->changeDir(spoony);
+    move_handler->moveSpoony();
+    QVERIFY(originalLocation > spoony->x());
 }
 
-void MoveHandlerSpec::moveSnoopyShouldMovePlayerRightInXCoordinate()
+void MoveHandlerSpec::moveSpoonyShouldMovePlayerRightInXCoordinate()
 {
     move_handler->moving = true;
     move_handler->goingLeft = false;
     move_handler->goingRight = true;
-    move_handler->moveSnoopy();
-    int originalLocation = snoopy->x();
-    move_handler->moveSnoopy();
-    QVERIFY(originalLocation < snoopy->x());
+    move_handler->moveSpoony();
+    int originalLocation = spoony->x();
+    move_handler->moveSpoony();
+    QVERIFY(originalLocation < spoony->x());
 }
 
-void MoveHandlerSpec::moveSnoopyShouldMovePlayerUpInYCoordinate()
+void MoveHandlerSpec::moveSpoonyShouldMovePlayerUpInYCoordinate()
 {
     move_handler->jumping = true;
-    int originalLocation = snoopy->y();
-    move_handler->moveSnoopy();
-    QVERIFY(originalLocation > snoopy->y());
+    int originalLocation = spoony->y();
+    move_handler->moveSpoony();
+    QVERIFY(originalLocation > spoony->y());
 }
 
 void MoveHandlerSpec::deathShouldMakePlayerFallInYCoordinates()
 {
-    int originalLocation = snoopy->y();
+    int originalLocation = spoony->y();
     move_handler->death();
-    QVERIFY(originalLocation < snoopy->y());
+    QVERIFY(originalLocation < spoony->y());
 
 }
 
@@ -120,9 +120,9 @@ void MoveHandlerSpec::deathShouldEmitFinishedDying()
     QSignalSpy stateSpy(move_handler, SIGNAL(finishedDying()));
     QVERIFY(stateSpy.isValid());
     QCOMPARE(stateSpy.count(), 0);
-    snoopy->dying = true;
-    snoopy->setY(HEIGHT-1);
-    while (snoopy->dying)
+    spoony->dying = true;
+    spoony->setY(HEIGHT-1);
+    while (spoony->dying)
     {
         move_handler->death();
     }
@@ -134,10 +134,10 @@ void MoveHandlerSpec::deathShouldEmitFinishedDying()
 void MoveHandlerSpec::changeDirShouldChangePlayerDirection()
 {
     move_handler->goingRight = true;
-    move_handler->changeDir(snoopy);
+    move_handler->changeDir(spoony);
     QVERIFY(move_handler->goingLeft == true);
     QVERIFY(move_handler->goingRight == false);
-    move_handler->changeDir(snoopy);
+    move_handler->changeDir(spoony);
     QVERIFY(move_handler->goingLeft == false);
     QVERIFY(move_handler->goingRight == true);
 

@@ -15,18 +15,18 @@ Feature: Game Screen
         
         Examples:
         | nr | levelname |
-        | 1  | "LOOK OUT SNOOPY" |
-        | 2  | "JUMPING SNOOPY" |
+        | 1  | "LOOK OUT spoony" |
+        | 2  | "JUMPING spoony" |
         | 3  | "WAS THIS IN THE ORIGINAL?" |
         | 4  | "UNNAMED" |
         
     Scenario: Lives without deaths
-        When Snoopy has not died
+        When spoony has not died
         Then lives should be "3"
 
     #TODO: Exercise 4
     Scenario Outline: Lives reduce with death
-        When Snoopy dies <nr> times
+        When spoony dies <nr> times
         Then lives should be <lives>
         
         Examples:

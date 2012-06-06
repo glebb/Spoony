@@ -5,12 +5,12 @@
 
 #include "ground.h"
 #include "hole.h"
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 #include "globals.h"
 #include "movingstick.h"
 
 
-Level4::Level4(QGraphicsScene *_scene, SnoopyMessage *m, SoundHandler *sound,
+Level4::Level4(QGraphicsScene *_scene, SpoonyMessage *m, SoundHandler *sound,
                QTimer *_timer, QObject *parent):
     Level(_scene, m, sound, _timer, parent)
 {
@@ -55,10 +55,10 @@ void Level4::play()
     _scene->addItem(b2);
 
 
-    snoopy->setPos(DEFAULT_START_POSITION);
-    _scene->addItem(snoopy);
-    _scene->setFocusItem(snoopy);
-    snoopy->setSelected(true);
+    spoony->setPos(DEFAULT_START_POSITION);
+    _scene->addItem(spoony);
+    _scene->setFocusItem(spoony);
+    spoony->setSelected(true);
 
     addKillObjects(g3);
     addKillObjects(b);

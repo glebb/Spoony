@@ -1,5 +1,5 @@
 #include "inputhandler.h"
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 
 InputHandler::InputHandler()
 {
@@ -13,20 +13,20 @@ InputHandler::~InputHandler()
 {
 }
 
-bool InputHandler::keyDown(SnoopySprite *snoopy, const QKeyEvent *event)
+bool InputHandler::keyDown(SpoonySprite *spoony, const QKeyEvent *event)
 {
     bool ret = false;
     if (event->key() == 16777236)
     {
         ret = true;
-        snoopy->move.moving = true;
+        spoony->move.moving = true;
         _rightPressed = true;
-        if (snoopy->move.goingLeft)
+        if (spoony->move.goingLeft)
         {
-            snoopy->move.changeDir(snoopy);
+            spoony->move.changeDir(spoony);
         }
-        snoopy->move.goingRight = true;
-        snoopy->move.goingLeft = false;
+        spoony->move.goingRight = true;
+        spoony->move.goingLeft = false;
 
 
     }
@@ -34,30 +34,30 @@ bool InputHandler::keyDown(SnoopySprite *snoopy, const QKeyEvent *event)
     if (event->key() == 16777234)
     {
         ret = true;
-        snoopy->move.moving = true;
+        spoony->move.moving = true;
         _leftPressed = true;
-        if (snoopy->move.goingRight)
+        if (spoony->move.goingRight)
         {
-            snoopy->move.changeDir(snoopy);
+            spoony->move.changeDir(spoony);
         }
-        snoopy->move.goingLeft = true;
-        snoopy->move.goingRight = false;
+        spoony->move.goingLeft = true;
+        spoony->move.goingRight = false;
 
     }
 
     if (event->key() == 16777235)
     {
         _up = true;
-        if (!snoopy->move.jumping)
+        if (!spoony->move.jumping)
             emit jump();
-        snoopy->move.jumping = true;
+        spoony->move.jumping = true;
         ret = true;
     }
 
     return ret;
 }
 
-bool InputHandler::keyUp(SnoopySprite *snoopy, const QKeyEvent *event)
+bool InputHandler::keyUp(SpoonySprite *spoony, const QKeyEvent *event)
 {
     bool ret = false;
     if (event->key() == 16777234)
@@ -68,12 +68,12 @@ bool InputHandler::keyUp(SnoopySprite *snoopy, const QKeyEvent *event)
     if (!_leftPressed && !_rightPressed)
     {
         ret = true;
-        snoopy->move.moving = false;
+        spoony->move.moving = false;
     }
 
-    if (!snoopy->move.jumping && event->key() == 16777234) {
+    if (!spoony->move.jumping && event->key() == 16777234) {
         ret = true;
-        snoopy->move.jumping = false;
+        spoony->move.jumping = false;
     }
     return ret;
 

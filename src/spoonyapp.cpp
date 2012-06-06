@@ -1,11 +1,11 @@
-#include "snoopyapp.h"
+#include "spoonyapp.h"
 
 #include <phonon/mediaobject.h>
 
-SnoopyApplication::SnoopyApplication(int argc, char *argv[]):
+SpoonyApplication::SpoonyApplication(int argc, char *argv[]):
     QApplication(argc, argv)
 {
-    setApplicationName("Snoopy");
+    setApplicationName("Spoony");
     input_intercepter = new InputIntercepter();
     installEventFilter(input_intercepter);
 
@@ -24,7 +24,7 @@ SnoopyApplication::SnoopyApplication(int argc, char *argv[]):
     connect(game, SIGNAL(ready()), this, SIGNAL(applicationReady()));
 }
 
-SnoopyApplication::~SnoopyApplication()
+SpoonyApplication::~SpoonyApplication()
 {
     delete input_intercepter;
     delete game;

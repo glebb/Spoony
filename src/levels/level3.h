@@ -7,7 +7,7 @@ class Level3 : public Level
 {
     Q_OBJECT
 public:
-    Level3(QGraphicsScene *_scene, SnoopyMessage *m, SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
+    Level3(QGraphicsScene *_scene, SpoonyMessage *m, SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
 
     void play();
 

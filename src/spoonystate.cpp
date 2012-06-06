@@ -1,23 +1,23 @@
-#include "snoopystate.h"
+#include "spoonystate.h"
 
-SnoopyState::SnoopyState(SnoopySprite* snoopy)
-    :QState(0),_snoopy(snoopy)
+SpoonyState::SpoonyState(SpoonySprite* spoony)
+    :QState(0),_spoony(spoony)
 {
 }
 
-void SnoopyState::onEntry ( QEvent * /*event*/ )
+void SpoonyState::onEntry ( QEvent * /*event*/ )
 {
     //connect tick signal from prince
-    QObject::connect(_snoopy,SIGNAL(tick()),this,SLOT(nextFrame()));
+    QObject::connect(_spoony,SIGNAL(tick()),this,SLOT(nextFrame()));
 }
 
-void SnoopyState::onExit ( QEvent * /*event*/ )
+void SpoonyState::onExit ( QEvent * /*event*/ )
 {
     //disconnect tick signal from prince
-    QObject::disconnect(_snoopy,SIGNAL(tick()),this,SLOT(nextFrame()));
+    QObject::disconnect(_spoony,SIGNAL(tick()),this,SLOT(nextFrame()));
 }
 
-void SnoopyState::nextFrame()
+void SpoonyState::nextFrame()
 {
     //do nothing
 }

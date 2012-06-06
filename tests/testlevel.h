@@ -4,7 +4,7 @@
 #include <QtTest/QtTest>
 
 class QGraphicsScene;
-class SnoopyMessage;
+class SpoonyMessage;
 class Level1;
 class FakeGraphics;
 
@@ -25,7 +25,7 @@ private Q_SLOTS:
 
 private:
     QGraphicsScene *scene;
-    SnoopyMessage *messaging;
+    SpoonyMessage *messaging;
     QTimer *timer;
     Level1 *level;
     FakeGraphics *fakeGraphics;

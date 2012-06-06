@@ -5,13 +5,13 @@
 
 #include "ground.h"
 #include "hole.h"
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 #include "globals.h"
 
-Level1::Level1(QGraphicsScene *scene, SnoopyMessage *m, SoundHandler *sound, QTimer *timer,
+Level1::Level1(QGraphicsScene *scene, SpoonyMessage *m, SoundHandler *sound, QTimer *timer,
                QObject *parent) : Level(scene, m, sound, timer, parent)
 {
-    _name = "LOOK OUT SNOOPY";
+    _name = "LOOK OUT SPOONY";
 }
 
 Level1::~Level1()
@@ -31,10 +31,10 @@ void Level1::play()
     _hole = new Hole(WIDTH / 2, HEIGHT-GRASS_HEIGHT, 120, GRASS_HEIGHT);
     _scene->addItem(_hole);
 
-    snoopy->setPos(DEFAULT_START_POSITION);
-    _scene->addItem(snoopy);
-    _scene->setFocusItem(snoopy);
-    snoopy->setSelected(true);
+    spoony->setPos(DEFAULT_START_POSITION);
+    _scene->addItem(spoony);
+    _scene->setFocusItem(spoony);
+    spoony->setSelected(true);
 
     addKillObjects(_hole);
 }

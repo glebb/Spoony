@@ -3,7 +3,7 @@
 
 #include "level.h"
 
-class SnoopyMessage;
+class SpoonyMessage;
 class QTimer;
 class QString;
 class SoundHandler;
@@ -11,7 +11,7 @@ class SoundHandler;
 class FakeLevel : public Level
 {
 public:
-    FakeLevel(QGraphicsScene *_scene, SnoopyMessage *m, SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
+    FakeLevel(QGraphicsScene *_scene, SpoonyMessage *m, SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
 
     void play();
 };

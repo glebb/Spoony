@@ -1,5 +1,5 @@
-#ifndef SNOOPYSPRITE_H
-#define SNOOPYSPRITE_H
+#ifndef SPOONYSPRITE_H
+#define SPOONYSPRITE_H
 
 #include <QPoint>
 #include <QPixmap>
@@ -11,18 +11,18 @@
 #include "inputhandler.h"
 #include "soundhandler.h"
 
-class SnoopyMessage;
+class SpoonyMessage;
 
 class QPainter;
 
-class SnoopySprite: public QGraphicsObject
+class SpoonySprite: public QGraphicsObject
 {
     Q_OBJECT
 public:
 
-    SnoopySprite(SnoopyMessage *m, SoundHandler *_sound, QGraphicsItem * parent = 0);
+    SpoonySprite(SpoonyMessage *m, SoundHandler *_sound, QGraphicsItem * parent = 0);
 
-    ~SnoopySprite();
+    ~SpoonySprite();
 
     const static int spriteWidth;
     const static int spriteHeight;
@@ -39,7 +39,7 @@ public:
     bool dying;
     MoveHandler move;
 
-    SnoopyMessage *m;
+    SpoonyMessage *m;
 
 
 
@@ -76,4 +76,4 @@ private:
 
 };
 
-#endif // SNOOPYSPRITE_H
+#endif // SPOONYSPRITE_H

@@ -2,21 +2,21 @@ QT += declarative \
     phonon
 
 TEMPLATE = app
-TARGET = Snoopy
-DEPENDPATH += .Snoopy
+TARGET = spoony
+DEPENDPATH += .spoony
 
 INCLUDEPATH += src/. \
     src/levels \
     src/sprites \
 
-RESOURCES += src/snoopy.qrc
+RESOURCES += src/spoony.qrc
 
 # Input
 SOURCES += src/main.cpp \
     src/standingstate.cpp \
-    src/sprites/snoopysprite.cpp \
+    src/sprites/spoonysprite.cpp \
     src/runningstate.cpp \
-    src/snoopystate.cpp \
+    src/spoonystate.cpp \
     src/sprites/ground.cpp \
     src/inputhandler.cpp \
     src/movehandler.cpp \
@@ -27,21 +27,21 @@ SOURCES += src/main.cpp \
     src/levels/level2.cpp \
     src/levels/level3.cpp \
     src/sprites/movingtriangle.cpp \
-    src/snoopymessaging.cpp \
+    src/spoonymessaging.cpp \
     src/jumpingstate.cpp \
     src/soundhandler.cpp \
     src/sprites/basicsprite.cpp \
     src/levels/level4.cpp \
     src/sprites/movingstick.cpp \
     src/inputintercepter.cpp \
-    src/snoopyapp.cpp \
+    src/spoonyapp.cpp \
     src/levelfactory.cpp
 
 HEADERS += \
     src/standingstate.h \
     src/runningstate.h \
-    src/sprites/snoopysprite.h \
-    src/snoopystate.h \
+    src/sprites/spoonysprite.h \
+    src/spoonystate.h \
     src/sprites/ground.h \
     src/inputhandler.h \
     src/movehandler.h \
@@ -52,7 +52,7 @@ HEADERS += \
     src/levels/level2.h \
     src/levels/level3.h \
     src/sprites/movingtriangle.h \
-    src/snoopymessaging.h \
+    src/spoonymessaging.h \
     src/globals.h \
     src/jumpingstate.h \
     src/soundhandler.h \
@@ -60,7 +60,7 @@ HEADERS += \
     src/levels/level4.h \
     src/sprites/movingstick.h \
     src/inputintercepter.h \
-    src/snoopyapp.h \
+    src/spoonyapp.h \
     src/levelfactory.h
 
 OTHER_FILES += \
@@ -88,7 +88,7 @@ QMAKE_POST_LINK += mkdir -p $$DESTDIR/sounds && cp sounds/* $$DESTDIR/sounds/
 }
 
 macx{
-QMAKE_POST_LINK += && mkdir -p $$DESTDIR/Snoopy.app/Contents/MacOS/sounds && cp sounds/* $$DESTDIR/Snoopy.app/Contents/MacOS/sounds/
+QMAKE_POST_LINK += && mkdir -p $$DESTDIR/spoony.app/Contents/MacOS/sounds && cp sounds/* $$DESTDIR/spoony.app/Contents/MacOS/sounds/
 }
 
 win32{

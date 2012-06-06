@@ -11,7 +11,7 @@ class Level1 : public Level
 {
     Q_OBJECT
 public:
-    Level1(QGraphicsScene *_scene, SnoopyMessage *m, SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
+    Level1(QGraphicsScene *_scene, SpoonyMessage *m, SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
     ~Level1();
 
     void play();

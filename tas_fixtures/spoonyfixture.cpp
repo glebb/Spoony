@@ -1,27 +1,27 @@
-#include "snoopyfixture.h"
+#include "spoonyfixture.h"
 
 #include <QtPlugin>
 
 #include "game.h"
 #include "level.h"
-#include "snoopyapp.h"
+#include "spoonyapp.h"
 #include "globals.h"
 
-Q_EXPORT_PLUGIN2(tas_noopsy, SnoopyFixture)
+Q_EXPORT_PLUGIN2(tas_spoony, SpoonyFixture)
 
 
-SnoopyFixture::SnoopyFixture()
+SpoonyFixture::SpoonyFixture()
 {
 }
 
-SnoopyFixture::~SnoopyFixture()
+SpoonyFixture::~SpoonyFixture()
 {
 
 }
 
-bool SnoopyFixture::execute(void *objectInstance, QString actionName, QHash<QString, QString> parameters, QString &stdOut)
+bool SpoonyFixture::execute(void *objectInstance, QString actionName, QHash<QString, QString> parameters, QString &stdOut)
 {
-    SnoopyApplication *app = static_cast<SnoopyApplication *>(objectInstance);
+    SpoonyApplication *app = static_cast<SpoonyApplication *>(objectInstance);
     if (actionName == "getLevelName") {
         stdOut = app->getGame()->getCurrentLevel()->getName();
         return true;

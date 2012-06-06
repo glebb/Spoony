@@ -1,14 +1,14 @@
 #ifndef JUMPINGSTATE_H
 #define JUMPINGSTATE_H
 
-#include "snoopystate.h"
+#include "spoonystate.h"
 
-class SnoopySprite;
+class SpoonySprite;
 
-class JumpingState : public SnoopyState
+class JumpingState : public SpoonyState
 {
 public:
-    JumpingState(SnoopySprite* snoopy);
+    JumpingState(SpoonySprite* spoony);
 };
 
 #endif // JUMPINGSTATE_H

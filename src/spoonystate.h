@@ -1,14 +1,14 @@
-#ifndef SNOOPYSTATE_H
-#define SNOOPYSTATE_H
+#ifndef SPOONYSTATE_H
+#define SPOONYSTATE_H
 
 #include <QState>
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 
-class SnoopyState : public QState
+class SpoonyState : public QState
 {
     Q_OBJECT
 public:
-    explicit SnoopyState(SnoopySprite* snoopy);
+    explicit SpoonyState(SpoonySprite* spoony);
 
 private slots:
     virtual void nextFrame();
@@ -18,8 +18,8 @@ public:
     virtual void onExit ( QEvent * event );
 
 protected:
-    SnoopySprite* _snoopy;
+    SpoonySprite* _spoony;
 
 };
 
-#endif // SNOOPYSTATE_H
+#endif // SPOONYSTATE_H

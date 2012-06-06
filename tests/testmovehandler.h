@@ -5,8 +5,8 @@
 
 #include "movehandler.h"
 
-class SnoopyMessage;
-class SnoopySprite;
+class SpoonyMessage;
+class SpoonySprite;
 
 class MoveHandlerSpec : public QObject
 {
@@ -19,19 +19,19 @@ private Q_SLOTS:
     void init();
     void cleanup();
 
-    void moveSnoopyShouldEmitDieWhenDying();
-    void moveSnoopyShouldEmitJumpWhenJumping();
-    void moveSnoopyShouldEmitCollideWhenColliding();
-    void moveSnoopyShouldMovePlayerLeftInXCoordinate();
-    void moveSnoopyShouldMovePlayerRightInXCoordinate();
-    void moveSnoopyShouldMovePlayerUpInYCoordinate();
+    void moveSpoonyShouldEmitDieWhenDying();
+    void moveSpoonyShouldEmitJumpWhenJumping();
+    void moveSpoonyShouldEmitCollideWhenColliding();
+    void moveSpoonyShouldMovePlayerLeftInXCoordinate();
+    void moveSpoonyShouldMovePlayerRightInXCoordinate();
+    void moveSpoonyShouldMovePlayerUpInYCoordinate();
     void deathShouldMakePlayerFallInYCoordinates();
     void deathShouldEmitFinishedDying();
     void changeDirShouldChangePlayerDirection();
 
 private:
-    SnoopyMessage *messaging;
-    SnoopySprite *snoopy;
+    SpoonyMessage *messaging;
+    SpoonySprite *spoony;
     MoveHandler *move_handler;
 
 };

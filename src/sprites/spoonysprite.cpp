@@ -1,4 +1,4 @@
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 
 #include <QPainter>
 #include <QDebug>
@@ -9,16 +9,16 @@
 #include "standingstate.h"
 #include "runningstate.h"
 #include "jumpingstate.h"
-#include "snoopymessaging.h"
+#include "spoonymessaging.h"
 #include "globals.h"
 
-const int SnoopySprite::spriteWidth = 121;
-const int SnoopySprite::spriteHeight = 150;
+const int SpoonySprite::spriteWidth = 121;
+const int SpoonySprite::spriteHeight = 150;
 
-SnoopySprite::SnoopySprite(SnoopyMessage *m, SoundHandler *sound, QGraphicsItem * parent)
+SpoonySprite::SpoonySprite(SpoonyMessage *m, SoundHandler *sound, QGraphicsItem * parent)
     :QGraphicsObject(parent), m(m), _sound(sound)
 {
-    _mSpriteImage = new QPixmap(":/images/snoopy.png");
+    _mSpriteImage = new QPixmap(":/images/spoony.png");
 
     StandingState* standing = new StandingState(this);
     RunningState* running = new RunningState(this);
@@ -38,7 +38,7 @@ SnoopySprite::SnoopySprite(SnoopyMessage *m, SoundHandler *sound, QGraphicsItem 
     _stateMachine.setInitialState(standing);
     _stateMachine.start();
 
-    move.setSnoopy(this);
+    move.setSpoony(this);
 
     dying = false;
     connect(this,SIGNAL(die()), m, SLOT(onDie()));
@@ -47,61 +47,61 @@ SnoopySprite::SnoopySprite(SnoopyMessage *m, SoundHandler *sound, QGraphicsItem 
     _x = 0;
     _y = 0;
 
-    setObjectName("SnoopySprite");
+    setObjectName("SpoonySprite");
 }
 
-void SnoopySprite::keyPressEvent(QKeyEvent *event)
+void SpoonySprite::keyPressEvent(QKeyEvent *event)
 {
 
     if (!dying && _input.keyDown(this, event))
         emit buttonDown();
 }
 
-void SnoopySprite::keyReleaseEvent(QKeyEvent *event)
+void SpoonySprite::keyReleaseEvent(QKeyEvent *event)
 {
     if (_input.keyUp(this, event))
         emit buttonUp();
 }
 
-SnoopySprite::~SnoopySprite()
+SpoonySprite::~SpoonySprite()
 {    
     delete _mSpriteImage;
 }
 
-QRectF SnoopySprite::boundingRect() const
+QRectF SpoonySprite::boundingRect() const
 {
     return QRectF(0,7,spriteWidth, spriteHeight);
 }
 
-void SnoopySprite::paint(QPainter* painter, const QStyleOptionGraphicsItem*/*option*/,QWidget*/*widget*/)
+void SpoonySprite::paint(QPainter* painter, const QStyleOptionGraphicsItem*/*option*/,QWidget*/*widget*/)
 {
     painter->drawPixmap(0,0,*_mSpriteImage, _x*spriteWidth, _y*spriteHeight, spriteWidth, spriteHeight);
 //    painter->drawPath(shape());
     //painter->drawRect(0,0,spriteWidth,spriteHeight);
 }
 
-void SnoopySprite::nextFrame()
+void SpoonySprite::nextFrame()
 {
     emit tick();
     this->update();
 }
 
-void SnoopySprite::onDie()
+void SpoonySprite::onDie()
 {
     emit die();
 }
 
-void SnoopySprite::onJump()
+void SpoonySprite::onJump()
 {
     emit jump();
 }
 
-void SnoopySprite::onLand()
+void SpoonySprite::onLand()
 {
     emit buttonDown();
 }
 
-QPainterPath SnoopySprite::shape() const
+QPainterPath SpoonySprite::shape() const
 {
     QRectF r = boundingRect();
     r.adjust(20,6,-20,-6);
@@ -110,12 +110,12 @@ QPainterPath SnoopySprite::shape() const
     return path;
 }
 
-void SnoopySprite::playJumpSound()
+void SpoonySprite::playJumpSound()
 {
     _sound->playSound("/sounds/jump.wav");
 }
 
-void SnoopySprite::playDeathSound()
+void SpoonySprite::playDeathSound()
 {
     _sound->playSound("/sounds/falling.wav");
 }

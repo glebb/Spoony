@@ -1,1 +1,3 @@
-<fixtures>    <fixture name="poonsy" plugin="tas_noopsy" /></fixtures>
+<fixtures>
+    <fixture name="spoony" plugin="tas_spoony" />
+</fixtures>

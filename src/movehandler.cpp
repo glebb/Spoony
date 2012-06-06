@@ -1,6 +1,6 @@
 #include "movehandler.h"
-#include "snoopysprite.h"
-#include "snoopymessaging.h"
+#include "spoonysprite.h"
+#include "spoonymessaging.h"
 #include "globals.h"
 #include <QDebug>
 #include <QGraphicsScene>
@@ -29,20 +29,20 @@ void MoveHandler::changeDir(QGraphicsItem* item)
     item->scale(-1, 1);
     if (goingLeft)
     {
-        item->setPos(item->pos().x() - _snoopy->spriteWidth, item->pos().y());
+        item->setPos(item->pos().x() - _spoony->spriteWidth, item->pos().y());
         goingLeft = false;
         goingRight = true;
     }
     else {
-        item->setPos(item->pos().x() + _snoopy->spriteWidth, item->pos().y());
+        item->setPos(item->pos().x() + _spoony->spriteWidth, item->pos().y());
         goingLeft = true;
         goingRight = false;
     }
 }
 
-void MoveHandler::moveSnoopy()
+void MoveHandler::moveSpoony()
 {
-    if (_snoopy->dying) {
+    if (_spoony->dying) {
         emit die();
         return;
     }
@@ -50,15 +50,15 @@ void MoveHandler::moveSnoopy()
         emit jump();
         if (jumpHeightControl < 14)
         {
-            _snoopy->setPos(_snoopy->pos().x(), _snoopy->pos().y() - 6);
+            _spoony->setPos(_spoony->pos().x(), _spoony->pos().y() - 6);
             jumpHeightControl++;
         }
         else {
-            _snoopy->setPos(_snoopy->pos().x(), _snoopy->pos().y() + 6);
+            _spoony->setPos(_spoony->pos().x(), _spoony->pos().y() + 6);
         }
     }
-    int colliding = _snoopy->collidingItems().size();
-    foreach(QGraphicsItem *i,_snoopy->collidingItems())
+    int colliding = _spoony->collidingItems().size();
+    foreach(QGraphicsItem *i,_spoony->collidingItems())
     {
         BasicSprite *s = qgraphicsitem_cast<BasicSprite *>(i);
         if (s->isSolidPlane()) {
@@ -70,68 +70,68 @@ void MoveHandler::moveSnoopy()
                 if (moving) emit movingAfterLanding();
             }
             // Correct y
-            while (_snoopy->collidingItems().size() == colliding)
+            while (_spoony->collidingItems().size() == colliding)
             {
-                _snoopy->setPos(_snoopy->pos().x(), _snoopy->pos().y() - 1);
+                _spoony->setPos(_spoony->pos().x(), _spoony->pos().y() - 1);
             }
-            _snoopy->setPos(_snoopy->pos().x(), _snoopy->pos().y() + 1);
+            _spoony->setPos(_spoony->pos().x(), _spoony->pos().y() + 1);
             break;
         }
-        _snoopy->setPos(_snoopy->pos().x(), _snoopy->pos().y() + 6);
+        _spoony->setPos(_spoony->pos().x(), _spoony->pos().y() + 6);
     }
-    if (!jumping && _snoopy->collidingItems().size() == 0)
-        _snoopy->setPos(_snoopy->pos().x(), _snoopy->pos().y() + 6);
+    if (!jumping && _spoony->collidingItems().size() == 0)
+        _spoony->setPos(_spoony->pos().x(), _spoony->pos().y() + 6);
 
     if (moving)
     {
         int dir = 0;
-        if (goingLeft && _snoopy->pos().x() >= _snoopy->spriteWidth / 2) dir = -6;
+        if (goingLeft && _spoony->pos().x() >= _spoony->spriteWidth / 2) dir = -6;
         if (goingRight) dir = 6;
-        _snoopy->setPos(_snoopy->pos().x() + dir, _snoopy->pos().y());
+        _spoony->setPos(_spoony->pos().x() + dir, _spoony->pos().y());
     }
 
-    if (_snoopy->collidingItems().size() > 0) emit collides();
+    if (_spoony->collidingItems().size() > 0) emit collides();
 
-    if (goingRight && _snoopy->pos().x() + _snoopy->spriteWidth / 2 >= WIDTH){
+    if (goingRight && _spoony->pos().x() + _spoony->spriteWidth / 2 >= WIDTH){
         emit finished();
         return;
     }
-    if (goingLeft && _snoopy->pos().x()  - _snoopy->spriteWidth / 2 >= WIDTH){
+    if (goingLeft && _spoony->pos().x()  - _spoony->spriteWidth / 2 >= WIDTH){
         emit finished();
         return;
     }
 
 }
 
-void MoveHandler::setSnoopy(SnoopySprite *snoopy)
+void MoveHandler::setSpoony(SpoonySprite *spoony)
 {
-    this->_snoopy = snoopy;
-    connect(this,SIGNAL(die()), snoopy, SLOT(onDie()));
-    connect(this,SIGNAL(jump()), snoopy, SLOT(onJump()));
-    connect(this,SIGNAL(landed()), snoopy, SLOT(onLand()));
+    this->_spoony = spoony;
+    connect(this,SIGNAL(die()), spoony, SLOT(onDie()));
+    connect(this,SIGNAL(jump()), spoony, SLOT(onJump()));
+    connect(this,SIGNAL(landed()), spoony, SLOT(onLand()));
 
-    connect(this,SIGNAL(finished()), snoopy->m, SLOT(onFinish()));
-    connect(this,SIGNAL(collides()), snoopy->m, SLOT(onCollide()));
-    connect(this,SIGNAL(finishedDying()), snoopy->m,SLOT(onResetLevel()));
+    connect(this,SIGNAL(finished()), spoony->m, SLOT(onFinish()));
+    connect(this,SIGNAL(collides()), spoony->m, SLOT(onCollide()));
+    connect(this,SIGNAL(finishedDying()), spoony->m,SLOT(onResetLevel()));
 
 }
 
 void MoveHandler::death()
 {
-    _snoopy->dying = true;
+    _spoony->dying = true;
 
-    _snoopy->setPos(_snoopy->pos().x(), _snoopy->pos().y() + 2);
+    _spoony->setPos(_spoony->pos().x(), _spoony->pos().y() + 2);
     moving = false;
 
     // Put back to start position
-    if (_snoopy->pos().y() > HEIGHT) {
-        _snoopy->dying = false;
+    if (_spoony->pos().y() > HEIGHT) {
+        _spoony->dying = false;
         if (goingLeft) {
-            changeDir(_snoopy);
+            changeDir(_spoony);
             goingLeft = false;
             goingRight = true;
         }
-        _snoopy->setPos(DEFAULT_START_POSITION);
+        _spoony->setPos(DEFAULT_START_POSITION);
         emit finishedDying();
     }
 }

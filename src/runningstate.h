@@ -1,14 +1,14 @@
 #ifndef RUNNINGSTATE_H
 #define RUNNINGSTATE_H
 
-#include "snoopystate.h"
+#include "spoonystate.h"
 
-class RunningState : public SnoopyState
+class RunningState : public SpoonyState
 {
     Q_OBJECT
 
 public:
-    RunningState( SnoopySprite* snoopy);
+    RunningState( SpoonySprite* spoony);
 
 private slots:
 

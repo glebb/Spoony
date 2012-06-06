@@ -6,7 +6,7 @@
 
 
 
-class SnoopySprite;
+class SpoonySprite;
 
 class MoveHandler :  public QObject
 {
@@ -14,7 +14,7 @@ class MoveHandler :  public QObject
 public:
     MoveHandler();
     ~MoveHandler();
-    void setSnoopy(SnoopySprite *_snoopy);
+    void setSpoony(SpoonySprite *_spoony);
 
     void changeDir(QGraphicsItem* item);
     bool jumping;
@@ -38,11 +38,11 @@ signals:
 
 
 public slots:
-    void moveSnoopy();
+    void moveSpoony();
     void death();
 
 private:
-    SnoopySprite *_snoopy;
+    SpoonySprite *_spoony;
 };
 
 #endif // MOVEHANDLER_H

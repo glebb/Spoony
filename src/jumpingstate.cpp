@@ -1,7 +1,7 @@
 #include "jumpingstate.h"
 
 
-JumpingState::JumpingState(SnoopySprite* snoopy)
-    :SnoopyState(snoopy)
+JumpingState::JumpingState(SpoonySprite* spoony)
+    :SpoonyState(spoony)
 {
 }

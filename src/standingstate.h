@@ -1,14 +1,14 @@
 #ifndef STANDINGSTATE_H
 #define STANDINGSTATE_H
 
-#include "snoopystate.h"
+#include "spoonystate.h"
 
-class SnoopySprite;
+class SpoonySprite;
 
-class StandingState : public SnoopyState
+class StandingState : public SpoonyState
 {
 public:
-    StandingState(SnoopySprite* snoopy);
+    StandingState(SpoonySprite* spoony);
 };
 
 #endif // STANDINGSTATE_H

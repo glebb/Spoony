@@ -9,7 +9,7 @@ Feature: Startup Screen
     # TODO: Exercise 4
     Scenario: Startup screen with title
         When I do nothing
-        Then I should see startupscreen with text SNOOPY
+        Then I should see startupscreen with text spoony
 
     Scenario Outline: Start playing by any key
         When I press <key>

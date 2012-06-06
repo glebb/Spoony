@@ -1,13 +1,13 @@
-#ifndef SNOOPYMESSAGING_H
-#define SNOOPYMESSAGING_H
+#ifndef SPOONYMESSAGING_H
+#define SPOONYMESSAGING_H
 
 #include <QObject>
 
-class SnoopyMessage : public QObject
+class SpoonyMessage : public QObject
 {
     Q_OBJECT
 public:
-    explicit SnoopyMessage(QObject *parent = 0);
+    explicit SpoonyMessage(QObject *parent = 0);
 
 signals:
     void die();
@@ -22,4 +22,4 @@ public slots:
     void onResetLevel();
 };
 
-#endif // SNOOPYMESSAGING_H
+#endif // SPOONYMESSAGING_H

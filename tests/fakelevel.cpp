@@ -4,7 +4,7 @@
 #include <QString>
 
 
-FakeLevel::FakeLevel(QGraphicsScene *scene,  SnoopyMessage *m, SoundHandler *sound, QTimer *timer,
+FakeLevel::FakeLevel(QGraphicsScene *scene,  SpoonyMessage *m, SoundHandler *sound, QTimer *timer,
                QObject *parent) : Level(scene, m, sound, timer, parent)
 {
     _name = "FAKE LEVEL";

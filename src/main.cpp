@@ -1,8 +1,8 @@
 #include <QApplication>
-#include "snoopyapp.h"
+#include "spoonyapp.h"
 
 int main(int argc, char* argv[])
 {
-    SnoopyApplication app(argc, argv);
+    SpoonyApplication app(argc, argv);
     return app.exec();
 }

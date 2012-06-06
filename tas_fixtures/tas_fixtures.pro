@@ -7,7 +7,7 @@
 QT       += declarative \
             phonon
 
-TARGET = tas_noopsy
+TARGET = tas_spoony
 TEMPLATE = lib
 CONFIG += dll
 
@@ -15,7 +15,7 @@ DESTDIR = $$[QT_INSTALL_PLUGINS]/tasfixtures
 
 DEFINES += TAS_FIXTURES_LIBRARY
 
-SOURCES += snoopyfixture.cpp \
+SOURCES += spoonyfixture.cpp \
         ../src/game.cpp \
         ../src/levels/*.cpp \
         ../src/sprites/*.cpp \
@@ -23,15 +23,15 @@ SOURCES += snoopyfixture.cpp \
         ../src/movehandler.cpp \
         ../src/soundhandler.cpp \
         ../src/runningstate.cpp \
-        ../src/snoopystate.cpp \
+        ../src/spoonystate.cpp \
         ../src/standingstate.cpp \
         ../src/jumpingstate.cpp \
-        ../src/snoopymessaging.cpp \
+        ../src/spoonymessaging.cpp \
         ../src/inputintercepter.cpp \
-        ../src/snoopyapp.cpp \
+        ../src/spoonyapp.cpp \
         ../src/levelfactory.cpp
 
-HEADERS += snoopyfixture.h \
+HEADERS += spoonyfixture.h \
     ../src/levels/*.h \
     ../src/sprites/*.h \
     ../src/*.h

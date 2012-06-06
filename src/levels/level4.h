@@ -6,7 +6,7 @@
 class Level4 : public Level
 {
 public:
-    Level4(QGraphicsScene *_scene, SnoopyMessage *m,
+    Level4(QGraphicsScene *_scene, SpoonyMessage *m,
             SoundHandler *sound, QTimer *_timer, QObject *parent = 0);
     void play();
 };

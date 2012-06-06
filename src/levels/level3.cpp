@@ -4,13 +4,13 @@
 #include "hole.h"
 
 #include "movingtriangle.h"
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 #include "globals.h"
 
-Level3::Level3(QGraphicsScene *scene, SnoopyMessage *m, SoundHandler *sound, QTimer *timer, QObject *parent) :
+Level3::Level3(QGraphicsScene *scene, SpoonyMessage *m, SoundHandler *sound, QTimer *timer, QObject *parent) :
     Level(scene, m, sound, timer, parent)
 {
-    _name = "JUMPING SNOOPY";
+    _name = "JUMPING SPOONY";
 }
 
 void Level3::play()
@@ -23,10 +23,10 @@ void Level3::play()
     MovingTriangle *t2 = new MovingTriangle(_timer, WIDTH + WIDTH / 3,HEIGHT-GRASS_HEIGHT, -3);
     _scene->addItem(t2);
 
-    snoopy->setPos(DEFAULT_START_POSITION);
-    _scene->addItem(snoopy);
-    _scene->setFocusItem(snoopy);
-    snoopy->setSelected(true);
+    spoony->setPos(DEFAULT_START_POSITION);
+    _scene->addItem(spoony);
+    _scene->setFocusItem(spoony);
+    spoony->setSelected(true);
     killers.append(t);
     killers.append(t2);
 

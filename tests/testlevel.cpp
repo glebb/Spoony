@@ -15,7 +15,7 @@ LevelSpec::LevelSpec()
 void LevelSpec::init()
 {
     scene = new QGraphicsScene(0,0, 1000, 1000);
-    messaging = new SnoopyMessage();
+    messaging = new SpoonyMessage();
     timer = new QTimer();
     level = new Level1(scene, messaging, new FakeSoundHandler, timer);
     fakeGraphics = new FakeGraphics;
@@ -33,7 +33,7 @@ void LevelSpec::cleanup()
 
 void LevelSpec::onCollideShouldKillPlayerWhenCollidingWithKiller()
 {
-    QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Snoopy
+    QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Spoony
     fakeGraphics->setBounds(r);
     scene->addItem(fakeGraphics);
 
@@ -49,7 +49,7 @@ void LevelSpec::onCollideShouldKillPlayerWhenCollidingWithKiller()
 void LevelSpec::onCollideShouldNotKillPlayerWhenCollidingNormalObject()
 {
 
-    QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Snoopy
+    QRectF r(DEFAULT_START_POSITION.x(), DEFAULT_START_POSITION.y(), 300, 300); // Same location as Spoony
     fakeGraphics->setBounds(r);
     scene->addItem(fakeGraphics);
     QSignalSpy stateSpy(level, SIGNAL(die()));

@@ -3,7 +3,7 @@
 #include "game.h"
 #include "fakelevel.h"
 #include "fakegraphics.h"
-#include "snoopymessaging.h"
+#include "spoonymessaging.h"
 #include "globals.h"
 
 #include <QtTest/QtTest>
@@ -14,7 +14,7 @@ GameSpec::GameSpec()
 
 void GameSpec::init()
 {
-    m = new SnoopyMessage;
+    m = new SpoonyMessage;
     timer = new QTimer;
     level = new FakeLevel(0, m, new FakeSoundHandler, timer);
     game = new Game();

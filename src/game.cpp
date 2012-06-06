@@ -17,7 +17,7 @@
 
 Game::Game(QObject *parent) : QObject(parent)
 {
-    snoopy_message = new SnoopyMessage(this);
+    spoony_message = new SpoonyMessage(this);
     global_timer = new QTimer(this);
     global_speed = DEFAULT_SPEED;
     global_timer->start(1000 / global_speed);
@@ -29,8 +29,8 @@ Game::Game(QObject *parent) : QObject(parent)
     main_view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
     main_view->setCacheMode(QGraphicsView::CacheBackground);
     current_level = 0;
-    connect(snoopy_message, SIGNAL(finish()), this, SLOT(playNextLevel()));
-    connect(snoopy_message, SIGNAL(reset()), this, SLOT(onDie()));
+    connect(spoony_message, SIGNAL(finish()), this, SLOT(playNextLevel()));
+    connect(spoony_message, SIGNAL(reset()), this, SLOT(onDie()));
     qml_engine = new QDeclarativeEngine(this);
     qml_engine->rootContext()->setContextProperty("Game", this);
     qml_startscreen = new QDeclarativeComponent(qml_engine, QUrl("qrc:///startscreen.qml"));
@@ -157,6 +157,6 @@ void Game::clearGfxObjectsFromScene()
 void Game::create_level()
 {
     delete current_level;
-    current_level = LevelFactory::create(level, main_scene, snoopy_message, sound_handler, global_timer, this);
+    current_level = LevelFactory::create(level, main_scene, spoony_message, sound_handler, global_timer, this);
     setupScene();
 }

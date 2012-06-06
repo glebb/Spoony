@@ -1,5 +1,5 @@
-#ifndef SNOOPYAPP_H
-#define SNOOPYAPP_H
+#ifndef SPOONYAPP_H
+#define SPOONYAPP_H
 
 #include <QApplication>
 
@@ -8,12 +8,12 @@
 #include "globals.h"
 #include "inputintercepter.h"
 
-class SnoopyApplication : public QApplication
+class SpoonyApplication : public QApplication
 {
     Q_OBJECT
 public:
-    SnoopyApplication(int argc, char* argv[]);
-    ~SnoopyApplication();
+    SpoonyApplication(int argc, char* argv[]);
+    ~SpoonyApplication();
 
     Game *getGame() {return game;}
 signals:
@@ -28,4 +28,4 @@ private:
 
 };
 
-#endif // SNOOPYAPP_H
+#endif // SPOONYAPP_H

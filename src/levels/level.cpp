@@ -2,23 +2,23 @@
 
 #include <QDebug>
 
-#include "snoopysprite.h"
+#include "spoonysprite.h"
 #include "movehandler.h"
 #include "soundhandler.h"
 #include "globals.h"
 
-Level::Level(QGraphicsScene *scene, SnoopyMessage *m, SoundHandler *sound,
+Level::Level(QGraphicsScene *scene, SpoonyMessage *m, SoundHandler *sound,
              QTimer *timer, QObject *parent) :
     QObject(parent), _scene(scene), _timer(timer)
 {
-    snoopy = new SnoopySprite(m, sound);
-    connect(timer,SIGNAL(timeout()), snoopy, SLOT(nextFrame()));
-    connect(timer, SIGNAL(timeout()), &snoopy->move, SLOT(moveSnoopy()));
-    connect(&snoopy->move,SIGNAL(collides()), this, SLOT(onCollide()));
-    connect(this,SIGNAL(die()), &snoopy->move, SLOT(death()));
-    connect(this,SIGNAL(die()), snoopy, SLOT(playDeathSound()));
-    snoopy->setSelected(true);
-    snoopy->setFlags(snoopy->flags() | QGraphicsItem::ItemIsFocusable);
+    spoony = new SpoonySprite(m, sound);
+    connect(timer,SIGNAL(timeout()), spoony, SLOT(nextFrame()));
+    connect(timer, SIGNAL(timeout()), &spoony->move, SLOT(moveSpoony()));
+    connect(&spoony->move,SIGNAL(collides()), this, SLOT(onCollide()));
+    connect(this,SIGNAL(die()), &spoony->move, SLOT(death()));
+    connect(this,SIGNAL(die()), spoony, SLOT(playDeathSound()));
+    spoony->setSelected(true);
+    spoony->setFlags(spoony->flags() | QGraphicsItem::ItemIsFocusable);
 }
 
 Level::~Level()
@@ -32,11 +32,11 @@ void Level::addKillObjects(QGraphicsObject *obj)
 
 void Level::onCollide()
 {
-    if (!snoopy->dying && snoopy->collidingItems().size() != 0)
+    if (!spoony->dying && spoony->collidingItems().size() != 0)
 
     foreach(QGraphicsItem *i, killers)
     {
-        if (snoopy->collidesWithItem(i))
+        if (spoony->collidesWithItem(i))
         {
             emit die();
         }

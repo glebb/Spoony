@@ -3,7 +3,7 @@
 
 #include <QKeyEvent>
 
-class SnoopySprite;
+class SpoonySprite;
 
 
 class InputHandler : public QObject
@@ -13,8 +13,8 @@ public:
     InputHandler();
     ~InputHandler();
 
-    bool keyDown(SnoopySprite *snoopy, const QKeyEvent *event);
-    bool keyUp(SnoopySprite *snoopy, const QKeyEvent *event);
+    bool keyDown(SpoonySprite *spoony, const QKeyEvent *event);
+    bool keyUp(SpoonySprite *spoony, const QKeyEvent *event);
 
 signals:
     void jump();

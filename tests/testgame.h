@@ -5,7 +5,7 @@
 
 class Game;
 class FakeLevel;
-class SnoopyMessage;
+class SpoonyMessage;
 class QTimer;
 
 class GameSpec : public QObject
@@ -31,7 +31,7 @@ private Q_SLOTS:
 private:
     Game *game;
     FakeLevel *level;
-    SnoopyMessage *m;
+    SpoonyMessage *m;
     QTimer *timer;
 
 };
