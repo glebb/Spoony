@@ -12,13 +12,13 @@
 #include "spoonymessaging.h"
 #include "globals.h"
 
-const int SpoonySprite::spriteWidth = 121;
-const int SpoonySprite::spriteHeight = 150;
+const int SpoonySprite::spriteWidth = 56;
+const int SpoonySprite::spriteHeight = 90;
 
 SpoonySprite::SpoonySprite(SpoonyMessage *m, SoundHandler *sound, QGraphicsItem * parent)
     :QGraphicsObject(parent), m(m), _sound(sound)
 {
-    _mSpriteImage = new QPixmap(":/images/spoony.png");
+    _mSpriteImage = new QPixmap(":/images/tux_from_linux.png");
 
     StandingState* standing = new StandingState(this);
     RunningState* running = new RunningState(this);
@@ -64,20 +64,20 @@ void SpoonySprite::keyReleaseEvent(QKeyEvent *event)
 }
 
 SpoonySprite::~SpoonySprite()
-{    
+{
     delete _mSpriteImage;
 }
 
 QRectF SpoonySprite::boundingRect() const
 {
-    return QRectF(0,7,spriteWidth, spriteHeight);
+    return QRectF(8,18, spriteWidth-16, spriteHeight-30);
 }
 
 void SpoonySprite::paint(QPainter* painter, const QStyleOptionGraphicsItem*/*option*/,QWidget*/*widget*/)
 {
     painter->drawPixmap(0,0,*_mSpriteImage, _x*spriteWidth, _y*spriteHeight, spriteWidth, spriteHeight);
 //    painter->drawPath(shape());
-    //painter->drawRect(0,0,spriteWidth,spriteHeight);
+//    painter->drawRect(boundingRect());
 }
 
 void SpoonySprite::nextFrame()
@@ -104,7 +104,6 @@ void SpoonySprite::onLand()
 QPainterPath SpoonySprite::shape() const
 {
     QRectF r = boundingRect();
-    r.adjust(20,6,-20,-6);
     QPainterPath path;
     path.addEllipse(r);
     return path;

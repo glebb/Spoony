@@ -14,7 +14,7 @@ void RunningState::nextFrame()
     {
         _spoony->_y = 0;
         _spoony->_x += 1;
-        if (_spoony->_x >= 4 )
+        if (_spoony->_x >= 3 )
             _spoony->_x = 0;
     }
     _counter++;
